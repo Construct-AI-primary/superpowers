@@ -1,0 +1,9 @@
+{
+  "last_sync": "2026-03-21T05:11:14Z",
+  "sync_direction": "bidirectional",
+  "validation_enabled": true,
+  "compression_enabled": true,
+  "conflict_resolution": "intelligent",
+  "repository": "Loopy PARA",
+  "version": "1.0.0"
+}
