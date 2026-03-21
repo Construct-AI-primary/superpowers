@@ -10,15 +10,12 @@ loopy-ai is an autonomous AI company operating within the DevForge AI ecosystem.
 - **PARA Structure**: standard
 
 ## Structure
-- **agents/**: Agent definitions and registry
-- **para/**: PARA knowledge management system
-  - **projects/**: Active initiatives
-  - **areas/**: Ongoing responsibilities
-  - **resources/**: Reference materials
-  - **archives/**: Historical knowledge
-  - **pages/**: Discipline-specific documentation (if applicable)
-  - **sync/**: Cross-device synchronization
-  - **deployment/**: OpenClaw integration
+- **agents/**: Agent definitions and registry (25 agents)
+- **para/**: PARA knowledge management system (standard structure)
+  - **projects/**: Active initiatives (creative AI platform, content generation, artistic tools)
+  - **areas/**: Ongoing responsibilities (creative process, AI ethics, user experience)
+  - **resources/**: Reference materials (design principles, creative techniques, development resources)
+- **README.md**: Company documentation and overview
 
 ## Integration
 This company integrates with:

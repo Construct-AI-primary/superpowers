@@ -1,8 +1,0 @@
-{
-  "company": "loopy-ai",
-  "sync_targets": ["openclaw-device"],
-  "frequency": "real-time",
-  "conflict_resolution": "company-wins",
-  "compression": true,
-  "encryption": true
-}

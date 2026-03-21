@@ -116,6 +116,173 @@ Start a new session in your chosen platform and ask for something that should tr
 
 **The agent checks for relevant skills before any task.** Mandatory workflows, not suggestions.
 
+## DevForge AI Enterprise Integration
+
+Superpowers integrates with **DevForge AI**, a fully autonomous AI enterprise comprising 51 specialized agents across 7 divisions, enabling enterprise-scale autonomous development operations.
+
+### Architecture Overview
+
+**Multi-Company, Multi-Repository Enterprise System:**
+- **DevForge AI** (`docs_devforge_ai/`): 51-agent autonomous enterprise for AI development
+- **Loopy AI** (`docs_loopy_ai/`): Creative AI company (scalable to unlimited companies)
+- **Construct AI Application** (separate repo): Target codebase with documentation in `docs_construct_ai/` submodule
+- **OpenClaw Devices**: Dedicated distributed processing per company via Tailscale VPN
+
+### Enterprise Divisions & Agents
+
+#### Executive Governance (5 Agents)
+**Strategic oversight and enterprise coordination:**
+- **Orion** — Chief Orchestrator: Central coordination of all 51 agents, task management, conflict resolution
+- **Strategos** — Chief Strategy Officer: Strategic planning, product roadmap, resource allocation
+- **Insight** — Business Intelligence Director: Requirements engineering, analytics, forecasting
+- **Ledger** — Financial Optimization Agent: Cost management, ROI tracking, budget planning
+- **Council** — Governance Coordinator: Policy enforcement, ethics, risk management
+
+#### Strategy & Intelligence (7 Agents)
+**Market research, competitive analysis, strategic intelligence:**
+- **Scout** — Market Research Specialist
+- **Compass** — Competitive Intelligence Analyst
+- **Oracle** — Predictive Analytics Specialist
+- **Analyst** — Requirements Engineer
+- **Pathfinder** — Opportunity Discovery Agent
+- **Librarian** — Knowledge Graph Manager
+- **Mentor** — AI Training Coordinator
+
+#### Product & Experience (7 Agents)
+**Product design, UX, and customer success:**
+- **Atlas** — System Architect
+- **Nova** — UX/Product Design Lead
+- **Cartographer** — User Journey Mapping
+- **BrandForge** — Brand Identity Manager
+- **StoryCraft** — Content & Narrative Specialist
+- **Catalyst** — Product Growth Strategy
+- **Concierge** — Customer Experience & Onboarding
+
+#### Engineering & AI Systems (11 Agents)
+**Software development, AI engineering, quality assurance:**
+- **DevCore** — Full Stack Engineering Lead
+- **CodeSmith** — Backend Engineer
+- **Interface** — Frontend Engineer
+- **Cortex** — AI Systems Engineer
+- **PromptSmith** — Prompt Engineer
+- **Synth** — AI Agent Builder
+- **Automata** — Workflow Automation Engineer
+- **Vector** — QA & Testing Specialist
+- **Fixer** — Autonomous Bug Resolution
+- **Forge** — Prototyping Engineer
+- **Reviewer** — Code Review Specialist
+
+#### Data & Infrastructure (8 Agents)
+**Data engineering, DevOps, monitoring:**
+- **DataForge** — Data Engineering Specialist
+- **Schema** — Database Architect
+- **CloudOps** — DevOps & Deployment Engineer
+- **Sentinel** — Cybersecurity Engineer
+- **Pulse** — Product Analytics Specialist
+- **Navigator** — Observability & Monitoring Engineer
+- **Stream** — Real-Time Data Systems Engineer
+- **LedgerAI** — Cost Monitoring Specialist
+
+#### Security, Risk & Compliance (6 Agents)
+**Security, compliance, and risk management:**
+- **Guardian** — Compliance & Legal Specialist
+- **Auditor** — Internal Audit Coordinator
+- **Gatekeeper** — Access Control Manager
+- **Watchtower** — Threat Detection Analyst
+- **Archivist** — Data Governance Specialist
+- **SentinelX** — Security Incident Response
+
+#### Revenue, Growth & Ecosystem (7 Agents)
+**Sales, marketing, partnerships, market expansion:**
+- **DealMaker** — Sales Strategy Specialist
+- **CatalystX** — Marketing Campaigns Manager
+- **Amplifier** — Social Media & Distribution Manager
+- **Ally** — Partnership Manager
+- **Merchant** — Marketplace Strategy Specialist
+- **Ambassador** — Community & Developer Relations
+- **Voyager** — Market Expansion Strategist
+
+### Integration Architecture
+
+#### Cross-Repository Enterprise Operations
+- **Agent Definitions**: `docs_devforge_ai/` contains 51 agent specifications and orchestration logic
+- **Target Codebase**: Separate Construct AI repository for application development
+- **Documentation**: `docs_construct_ai/` submodule provides comprehensive application documentation
+- **Distributed Processing**: OpenClaw devices provide dedicated compute per company
+
+#### Memory & Knowledge Systems
+- **PARA Knowledge Management**: Universal knowledge foundation across all companies
+- **Gigabrain**: Intelligent recall and context awareness
+- **LCM**: Session continuity and memory persistence
+- **OpenStinger**: Cross-session pattern recognition and learning
+
+#### Communication Infrastructure
+- **DevForge Messaging Bus**: Inter-agent communication and coordination
+- **Task Queue System**: Centralized task distribution and dependency management
+- **Knowledge Graph**: Enterprise-wide information sharing and retrieval
+- **Tailscale VPN**: Secure distributed networking between OpenClaw devices
+
+### Multi-Company Framework
+
+#### Company Isolation & Federation
+- **Resource Isolation**: Dedicated compute, storage, and network per company
+- **Knowledge Separation**: Company-specific PARA knowledge bases with optional sharing
+- **Security Boundaries**: Complete isolation with configurable federation
+- **Scaling Independence**: Each company scales independently based on needs
+
+#### Cross-Company Collaboration
+- **Knowledge Marketplace**: Optional sharing of insights and best practices
+- **Task Delegation**: Inter-company task assignment for specialized work
+- **Federated Orchestration**: Multi-company agent coordination for complex projects
+- **Performance Benchmarking**: Comparative analytics across companies
+
+### Enterprise Success Metrics
+
+- **Agent Utilization**: >90% active engagement across all companies
+- **Task Completion**: >95% successful autonomous task execution
+- **Innovation Rate**: New capabilities developed per company per quarter
+- **Quality Assurance**: 100% automated testing and review coverage
+- **Scalability**: Support for unlimited companies with linear performance scaling
+
+### Getting Started with DevForge AI
+
+#### Company Registration
+```bash
+# Register a new autonomous company
+openclaw company register --name devforge-ai \
+  --repo /Users/_General/superpowers/docs_devforge_ai \
+  --agents 51 \
+  --orchestrator orion
+```
+
+#### Repository Configuration
+```bash
+# Configure cross-repository access
+openclaw repo map --name construct-ai-codebase \
+  --url https://github.com/construct-ai/main-app.git \
+  --docs-submodule /Users/_General/superpowers/docs_construct_ai
+```
+
+#### Enterprise Deployment
+```bash
+# Deploy complete autonomous enterprise
+openclaw company deploy devforge-ai \
+  --memory-system full \
+  --federation enabled \
+  --scaling auto
+```
+
+### Enterprise Features
+
+- **Autonomous Operation**: 24/7 development operations without human intervention
+- **Quality Assurance**: Built-in testing, review, and validation processes
+- **Scalability**: From single-agent tasks to enterprise-scale operations
+- **Knowledge Continuity**: Persistent learning and improvement across sessions
+- **Multi-Modal Intelligence**: Text, code, design, and strategic capabilities
+- **Enterprise Security**: Comprehensive compliance and risk management
+
+This integration transforms Superpowers from an individual developer workflow into a complete autonomous enterprise development platform, capable of managing multiple independent AI companies with sophisticated inter-company collaboration and knowledge sharing.
+
 ## What's Inside
 
 ### Skills Library
@@ -156,9 +323,12 @@ Read more: [Superpowers for Claude Code](https://blog.fsck.com/2025/10/09/superp
 Skills live directly in this repository. To contribute:
 
 1. Fork the repository
-2. Create a branch for your skill
-3. Follow the `writing-skills` skill for creating and testing new skills
-4. Submit a PR
+2. Clone with submodules: `git clone --recurse-submodules https://github.com/Construct-AI-primary/superpowers.git`
+   - Or if you've already cloned: `git submodule update --init --recursive`
+   - Or run the setup script: `./setup.sh`
+3. Create a branch for your skill
+4. Follow the `writing-skills` skill for creating and testing new skills
+5. Submit a PR
 
 See `skills/writing-skills/SKILL.md` for the complete guide.
 
