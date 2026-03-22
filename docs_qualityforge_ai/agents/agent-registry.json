@@ -1,0 +1,288 @@
+{
+  "company": "qualityforge-ai",
+  "template": "quality",
+  "total_agents": 35,
+  "disciplines": 4,
+  "agents": [
+    {
+      "id": "testing_1",
+      "type": "testing",
+      "company": "qualityforge-ai",
+      "capabilities": ["unit_testing", "test_automation"],
+      "memory_profile": "quality",
+      "status": "initialized"
+    },
+    {
+      "id": "testing_2",
+      "type": "testing",
+      "company": "qualityforge-ai",
+      "capabilities": ["integration_testing", "api_testing"],
+      "memory_profile": "quality",
+      "status": "initialized"
+    },
+    {
+      "id": "testing_3",
+      "type": "testing",
+      "company": "qualityforge-ai",
+      "capabilities": ["e2e_testing", "ui_testing"],
+      "memory_profile": "quality",
+      "status": "initialized"
+    },
+    {
+      "id": "testing_4",
+      "type": "testing",
+      "company": "qualityforge-ai",
+      "capabilities": ["performance_testing", "load_testing"],
+      "memory_profile": "quality",
+      "status": "initialized"
+    },
+    {
+      "id": "testing_5",
+      "type": "testing",
+      "company": "qualityforge-ai",
+      "capabilities": ["security_testing", "penetration_testing"],
+      "memory_profile": "quality",
+      "status": "initialized"
+    },
+    {
+      "id": "testing_6",
+      "type": "testing",
+      "company": "qualityforge-ai",
+      "capabilities": ["accessibility_testing", "compliance_testing"],
+      "memory_profile": "quality",
+      "status": "initialized"
+    },
+    {
+      "id": "testing_7",
+      "type": "testing",
+      "company": "qualityforge-ai",
+      "capabilities": ["compatibility_testing", "cross_platform"],
+      "memory_profile": "quality",
+      "status": "initialized"
+    },
+    {
+      "id": "testing_8",
+      "type": "testing",
+      "company": "qualityforge-ai",
+      "capabilities": ["load_testing", "stress_testing"],
+      "memory_profile": "quality",
+      "status": "initialized"
+    },
+    {
+      "id": "testing_9",
+      "type": "testing",
+      "company": "qualityforge-ai",
+      "capabilities": ["test_automation", "ci_cd"],
+      "memory_profile": "quality",
+      "status": "initialized"
+    },
+    {
+      "id": "testing_10",
+      "type": "testing",
+      "company": "qualityforge-ai",
+      "capabilities": ["code_coverage", "quality_metrics"],
+      "memory_profile": "quality",
+      "status": "initialized"
+    },
+    {
+      "id": "debugging_1",
+      "type": "debugging",
+      "company": "qualityforge-ai",
+      "capabilities": ["error_diagnostics", "root_cause_analysis"],
+      "memory_profile": "quality",
+      "status": "initialized"
+    },
+    {
+      "id": "debugging_2",
+      "type": "debugging",
+      "company": "qualityforge-ai",
+      "capabilities": ["code_tracing", "debug_logging"],
+      "memory_profile": "quality",
+      "status": "initialized"
+    },
+    {
+      "id": "debugging_3",
+      "type": "debugging",
+      "company": "qualityforge-ai",
+      "capabilities": ["bug_fixing", "patch_development"],
+      "memory_profile": "quality",
+      "status": "initialized"
+    },
+    {
+      "id": "debugging_4",
+      "type": "debugging",
+      "company": "qualityforge-ai",
+      "capabilities": ["code_analysis", "vulnerability_detection"],
+      "memory_profile": "quality",
+      "status": "initialized"
+    },
+    {
+      "id": "debugging_5",
+      "type": "debugging",
+      "company": "qualityforge-ai",
+      "capabilities": ["performance_profiling", "optimization"],
+      "memory_profile": "quality",
+      "status": "initialized"
+    },
+    {
+      "id": "debugging_6",
+      "type": "debugging",
+      "company": "qualityforge-ai",
+      "capabilities": ["advanced_debugging", "tool_specialization"],
+      "memory_profile": "quality",
+      "status": "initialized"
+    },
+    {
+      "id": "debugging_7",
+      "type": "debugging",
+      "company": "qualityforge-ai",
+      "capabilities": ["code_inspection", "review_debugging"],
+      "memory_profile": "quality",
+      "status": "initialized"
+    },
+    {
+      "id": "debugging_8",
+      "type": "debugging",
+      "company": "qualityforge-ai",
+      "capabilities": ["issue_resolution", "conflict_management"],
+      "memory_profile": "quality",
+      "status": "initialized"
+    },
+    {
+      "id": "coding_1",
+      "type": "coding",
+      "company": "qualityforge-ai",
+      "capabilities": ["code_generation", "implementation"],
+      "memory_profile": "quality",
+      "status": "initialized"
+    },
+    {
+      "id": "coding_2",
+      "type": "coding",
+      "company": "qualityforge-ai",
+      "capabilities": ["code_refactoring", "optimization"],
+      "memory_profile": "quality",
+      "status": "initialized"
+    },
+    {
+      "id": "coding_3",
+      "type": "coding",
+      "company": "qualityforge-ai",
+      "capabilities": ["system_architecture", "design"],
+      "memory_profile": "quality",
+      "status": "initialized"
+    },
+    {
+      "id": "coding_4",
+      "type": "coding",
+      "company": "qualityforge-ai",
+      "capabilities": ["performance_optimization", "tuning"],
+      "memory_profile": "quality",
+      "status": "initialized"
+    },
+    {
+      "id": "coding_5",
+      "type": "coding",
+      "company": "qualityforge-ai",
+      "capabilities": ["code_maintenance", "updates"],
+      "memory_profile": "quality",
+      "status": "initialized"
+    },
+    {
+      "id": "coding_6",
+      "type": "coding",
+      "company": "qualityforge-ai",
+      "capabilities": ["system_integration", "api_development"],
+      "memory_profile": "quality",
+      "status": "initialized"
+    },
+    {
+      "id": "coding_7",
+      "type": "coding",
+      "company": "qualityforge-ai",
+      "capabilities": ["code_review", "quality_assurance"],
+      "memory_profile": "quality",
+      "status": "initialized"
+    },
+    {
+      "id": "coding_8",
+      "type": "coding",
+      "company": "qualityforge-ai",
+      "capabilities": ["coding_standards", "enforcement"],
+      "memory_profile": "quality",
+      "status": "initialized"
+    },
+    {
+      "id": "coding_9",
+      "type": "coding",
+      "company": "qualityforge-ai",
+      "capabilities": ["code_documentation", "technical_writing"],
+      "memory_profile": "quality",
+      "status": "initialized"
+    },
+    {
+      "id": "coding_10",
+      "type": "coding",
+      "company": "qualityforge-ai",
+      "capabilities": ["code_migration", "modernization"],
+      "memory_profile": "quality",
+      "status": "initialized"
+    },
+    {
+      "id": "quality_1",
+      "type": "quality",
+      "company": "qualityforge-ai",
+      "capabilities": ["quality_gatekeeping", "standards_enforcement"],
+      "memory_profile": "quality",
+      "status": "initialized"
+    },
+    {
+      "id": "quality_2",
+      "type": "quality",
+      "company": "qualityforge-ai",
+      "capabilities": ["code_auditing", "compliance"],
+      "memory_profile": "quality",
+      "status": "initialized"
+    },
+    {
+      "id": "quality_3",
+      "type": "quality",
+      "company": "qualityforge-ai",
+      "capabilities": ["validation", "verification"],
+      "memory_profile": "quality",
+      "status": "initialized"
+    },
+    {
+      "id": "quality_4",
+      "type": "quality",
+      "company": "qualityforge-ai",
+      "capabilities": ["monitoring", "alerting"],
+      "memory_profile": "quality",
+      "status": "initialized"
+    },
+    {
+      "id": "quality_5",
+      "type": "quality",
+      "company": "qualityforge-ai",
+      "capabilities": ["quality_reporting", "metrics"],
+      "memory_profile": "quality",
+      "status": "initialized"
+    },
+    {
+      "id": "quality_6",
+      "type": "quality",
+      "company": "qualityforge-ai",
+      "capabilities": ["quality_training", "best_practices"],
+      "memory_profile": "quality",
+      "status": "initialized"
+    },
+    {
+      "id": "quality_7",
+      "type": "quality",
+      "company": "qualityforge-ai",
+      "capabilities": ["quality_governance", "policy_management"],
+      "memory_profile": "quality",
+      "status": "initialized"
+    }
+  ]
+}

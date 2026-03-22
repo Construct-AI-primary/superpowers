@@ -297,6 +297,12 @@ specs/                       # Technical specifications
 - **Governance**: Shared standards with company-specific adaptations
 - **Synchronization**: Bidirectional knowledge flow
 
+### Cross-Company Integration
+- **DevForge AI**: Enterprise development and orchestration
+- **QualityForge AI**: Testing, debugging, and code quality
+- **Loopy AI**: Creative AI and content generation
+- **Construct AI**: Core codebase and shared documentation
+
 ---
 
 ## Summary
