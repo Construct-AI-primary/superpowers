@@ -3,6 +3,17 @@
   "template": "creative",
   "total_agents": 25,
   "disciplines": 15,
+  "openclaw": {
+    "plugins": ["lossless-claw", "gigabrain", "openstinger"],
+    "gateway": "enabled",
+    "integration_version": "1.0"
+  },
+  "paperclip": {
+    "hosting": "enabled",
+    "deployment": "auto",
+    "platform": "Paperclip Cloud",
+    "uptime_target": "99.9%"
+  },
   "agents": [
     {
       "id": "creative_1",

@@ -235,15 +235,16 @@ log_info "Setting up PARA structure..."
 mkdir -p "$COMPANY_DIR/para"
 
 # Create PARA directories based on structure type
+# Note: "pages" is always included as a core PARA directory
 case $PARA_STRUCTURE in
     full)
         PARA_DIRS=("projects" "areas" "resources" "archives" "pages")
         ;;
     standard)
-        PARA_DIRS=("projects" "areas" "resources" "archives")
+        PARA_DIRS=("projects" "areas" "resources" "archives" "pages")
         ;;
     basic)
-        PARA_DIRS=("projects" "areas" "resources")
+        PARA_DIRS=("projects" "areas" "resources" "pages")
         ;;
 esac
 
