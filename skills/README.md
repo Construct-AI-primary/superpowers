@@ -14,18 +14,18 @@ related_docs:
 
 ## Overview
 
-This directory contains granular skill definitions extracted from analysis of 904 chat history tasks. Skills represent frequently used patterns and techniques that agents can leverage for consistent, high-quality task execution.
-
-## Analysis Summary
-
-- **Total Tasks Analyzed:** 904
-- **Completed Tasks:** 619 (68.47% success rate)
-- **Unique Skills Identified:** 15
-- **Analysis Date:** March 30, 2026
+This directory contains comprehensive skill definitions for AI agents in the Construct AI ecosystem. Skills represent proven patterns, techniques, and methodologies that agents can leverage for consistent, high-quality task execution across all disciplines and use cases.
 
 ## Skills Framework Overview
 
-This directory contains skills derived from Construct AI's comprehensive procedures and documentation. Skills are created based on actual implemented procedures rather than generic patterns, ensuring they reflect real-world usage and cross-references.
+The skills framework encompasses multiple sources of expertise:
+
+- **Procedure-Based Skills**: Derived from comprehensive implementation procedures and frameworks
+- **Pattern-Based Skills**: Extracted from task analysis and historical performance data
+- **Framework Skills**: Based on established methodologies and best practices
+- **Domain Skills**: Specialized capabilities for specific disciplines and use cases
+
+Skills are designed with a cascading knowledge system where concise skill definitions provide decision-making guidance, with references to detailed procedures and documentation for implementation.
 
 ## Current Skills (Procedure-Based)
 
@@ -40,6 +40,10 @@ This directory contains skills derived from Construct AI's comprehensive procedu
 ### Internationalization Skills
 - **`i18n-translation-management`** - Automated translation management for 11 languages (67% frequency, 89.3% success)
 - Based on: `docs/codebase/procedures/i18n/0000_I18N_TRANSLATION_FILE_ORGANIZATION_PROCEDURE.md`
+
+### Workflow Skills
+- **`workflow-implementation`** - Complete AI-powered workflow system implementation (85% frequency, 92% success)
+- Based on: `docs/codebase/procedures/others/0000_WORKFLOW_IMPLEMENTATION_PROCEDURE.md`
 
 ### Existing Skills (Original Framework)
 - `brainstorming` - Creative problem-solving techniques
@@ -214,16 +218,26 @@ Planned improvements:
 ```
 skills/
 ├── README.md                    # This overview
-├── state-based-button-display/
-│   └── SKILL.md                # UI state management skill
-├── agent-accuracy-enhancement/
-│   └── SKILL.md                # AI accuracy enhancement skill
-├── database-schema-management/
-│   └── SKILL.md                # Database design skill
-├── i18n-translation-management/
-│   └── SKILL.md                # Translation management skill
-└── [additional skills]/
-    └── SKILL.md
+├── shared/                      # Skills shared across all companies
+│   ├── brainstorming/
+│   │   └── SKILL.md            # Creative problem-solving techniques
+│   ├── workflow-implementation/
+│   │   └── SKILL.md            # AI-powered workflow system implementation
+│   ├── writing-plans/
+│   │   └── SKILL.md            # Implementation planning
+│   └── [additional shared skills]/
+│       └── SKILL.md
+├── construct_ai/                # Construct AI specific skills
+│   ├── agent-coding-standards/
+│   │   └── SKILL.md            # Construct AI coding standards
+│   ├── database-naming-standards/
+│   │   └── SKILL.md            # Construct AI database naming
+│   └── [additional company skills]/
+│       └── SKILL.md
+├── devforge_ai/                 # DevForge AI specific skills
+├── promptforge_ai/              # PromptForge AI specific skills
+├── loopy_ai/                    # Loopy AI specific skills
+└── qualityforge_ai/             # QualityForge AI specific skills
 ```
 
 ## Development
