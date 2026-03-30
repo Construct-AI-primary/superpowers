@@ -5,8 +5,9 @@ gigabrain_tags: coding-standards, agent-development, codebase-standards, develop
 openstinger_context: coding-standards-practices, agent-development-standards
 last_updated: 2026-03-30
 related_docs:
-  - docs_construct_ai/codebase/coding-standards/
-  - docs_construct_ai/codebase/architecture/
+  - docs_construct_ai/codebase/coding-standards/0000_AGENT_CODING_STANDARDS.md
+  - docs_construct_ai/codebase/coding-standards/0000_AGENT_DEVELOPMENT_STANDARDS.md
+  - docs_construct_ai/codebase/coding-standards/0000_CODE_STANDARDIZATION_MASTER_PLAN.md
 related_skills:
   - writing-plans
   - test-driven-development
@@ -15,13 +16,13 @@ frequency_percent: 95.0
 success_rate_percent: 92.0
 ---
 
-# Agent Coding Standards
+# Agent Coding Standards Skill
 
 ## Overview
 
-**Core principle:** Follow Construct AI coding standards for consistent, maintainable, and secure agent development.
+**Core principle:** Apply Construct AI coding standards systematically to ensure consistent, maintainable, and secure agent development.
 
-**Technical stack:** React.js frontend, Node.js/Express.js backend, Supabase PostgreSQL database, custom authentication.
+**Reference:** This skill focuses on *how to apply* standards. For detailed standards documentation, see [Agent Coding Standards Reference](docs_construct_ai/codebase/coding-standards/0000_AGENT_CODING_STANDARDS.md).
 
 ## When to Use This Skill
 
@@ -42,751 +43,640 @@ success_rate_percent: 92.0
 
 ## Step-by-Step Procedure
 
-### Step 1: Environment Setup Verification
-**Ensure development environment follows standards:**
+### Step 1: Review Reference Standards
+**Access the comprehensive coding standards documentation:**
+
+```bash
+# Open the primary reference document
+open docs_construct_ai/codebase/coding-standards/0000_AGENT_CODING_STANDARDS.md
+```
+
+**Key Reference Sections:**
+- Project Overview & Technical Stack
+- JavaScript/Node.js Standards
+- File Structure Requirements
+- Import/Export Conventions
+- Error Handling Patterns
+- Database Standards
+- API Design Guidelines
+- Security Requirements
+- Testing Standards
+- Prompt Key Naming Conventions
+- Governance Integration Requirements
+
+### Step 2: Environment Standards Verification
+**Verify development environment meets requirements:**
 
 ```javascript
-// Verify environment setup
-const environmentCheck = {
-  nodeVersion: process.version,
-  npmVersion: await getNpmVersion(),
-  databaseConnection: await testDatabaseConnection(),
-  authenticationConfigured: checkAuthSetup(),
-  environmentVariables: validateEnvVars()
+// Environment validation checklist
+const environmentChecklist = {
+  nodeVersion: process.version >= '18.0.0',
+  databaseConnection: await testSupabaseConnection(),
+  authenticationConfigured: checkCustomAuthSetup(),
+  requiredEnvVars: validateEnvironmentVariables([
+    'SUPABASE_URL',
+    'SUPABASE_ANON_KEY',
+    'JWT_SECRET'
+  ]),
+  fileStructure: validateProjectStructure()
 };
 
-// Required versions and configurations
-const requiredSetup = {
-  nodeVersion: '>=18.0.0',
-  database: 'Supabase PostgreSQL',
-  auth: 'Custom with dev bypass',
-  envVars: ['SUPABASE_URL', 'SUPABASE_ANON_KEY', 'JWT_SECRET']
-};
+function validateEnvironmentVariables(requiredVars) {
+  return requiredVars.every(varName => process.env[varName] !== undefined);
+}
 
-if (!environmentCheck.allRequirementsMet) {
-  throw new Error(`Environment setup incomplete: ${environmentCheck.missing.join(', ')}`);
+function validateProjectStructure() {
+  const requiredDirs = ['server/', 'client/', 'docs/', 'server/sql/'];
+  return requiredDirs.every(dir => fs.existsSync(path.join(process.cwd(), dir)));
+}
+
+// Execute validation
+const results = await runEnvironmentValidation(environmentChecklist);
+if (!results.allPassed) {
+  console.error('Environment validation failed:', results.failures);
+  // Fix environment issues before proceeding
 }
 ```
 
-**Environment Requirements:**
-- Node.js 18+ with ES6+ syntax
-- Supabase PostgreSQL database connection
-- Custom authentication with development bypass
-- Required environment variables configured
-
-### Step 2: Code Structure Standards Application
-**Apply Construct AI file organization and naming conventions:**
+### Step 3: Code Standards Application
+**Apply coding standards systematically to new or modified code:**
 
 ```javascript
-// File structure validation
-const fileStructureStandards = {
-  serverCode: 'server/',
-  clientCode: 'client/',
-  documentation: 'docs/',
-  databaseSchemas: 'server/sql/',
-  routes: 'server/src/routes/',
-  components: 'client/src/components/',
-  services: 'client/src/services/',
-  utilities: 'client/src/utils/'
+// Code standards application checklist
+const codeStandardsChecklist = {
+  namingConventions: validateNamingConventions(code),
+  importExport: validateImportExportPatterns(code),
+  errorHandling: validateErrorHandling(code),
+  security: validateSecurityMeasures(code),
+  testing: validateTestingCoverage(code),
+  promptKeys: validatePromptKeyNaming(code),
+  governance: validateGovernanceIntegration(code)
 };
 
-// Naming conventions
-const namingConventions = {
-  variables: 'camelCase',
-  functions: 'camelCase',
-  files: 'camelCase',
-  components: 'PascalCase',
-  classes: 'PascalCase',
-  databaseColumns: 'snake_case',
-  apiEndpoints: 'kebab-case'
-};
-
-// Validate current file structure
-function validateFileStructure(projectRoot) {
-  const requiredDirs = Object.values(fileStructureStandards);
-  const missingDirs = requiredDirs.filter(dir => !fs.existsSync(path.join(projectRoot, dir)));
-  
-  if (missingDirs.length > 0) {
-    console.warn('Missing standard directories:', missingDirs);
-    // Create missing directories
-    missingDirs.forEach(dir => fs.mkdirSync(path.join(projectRoot, dir), { recursive: true }));
-  }
-}
-```
-
-**File Organization:**
-- Server code in `/server` directory
-- Client code in `/client` directory
-- Documentation in `/docs` directory
-- Database schemas in `/server/sql`
-- Routes organized by feature in `/server/src/routes`
-
-### Step 3: Import/Export Standards Implementation
-**Apply ES6 import/export conventions:**
-
-```javascript
-// Import grouping standards
-import { useState, useEffect } from 'react';        // Standard library
-import { createClient } from '@supabase/supabase-js'; // Third-party
-import { apiService } from '../services/api';       // Local modules
-import { formatDate } from '../../utils/dateUtils'; // Relative paths
-
-// Export patterns
-export const AGENT_STATUS = {
-  IDLE: 'idle',
-  PROCESSING: 'processing',
-  COMPLETE: 'complete',
-  ERROR: 'error'
-};
-
-export function validateAgentInput(input) {
-  // Validation logic
+// Validation functions
+function validateNamingConventions(code) {
+  // Check camelCase for variables/functions
+  // Check PascalCase for components/classes
+  // Check snake_case for database columns
+  // Return validation results
 }
 
-export default function AgentProcessor() {
-  // Component logic
+function validateImportExportPatterns(code) {
+  // Check ES6 import/export usage
+  // Check import grouping (stdlib, third-party, local)
+  // Check relative path usage
+  // Return validation results
 }
 
-// Group related exports
-export {
-  validateAgentInput,
-  processAgentOutput,
-  handleAgentError
-} from './agentUtils';
-```
+// Apply standards to code
+function applyCodingStandards(code) {
+  const validation = runStandardsValidation(code);
 
-**Import/Export Rules:**
-- Use ES6 imports: `import module from 'path'`
-- Group imports: standard libraries, third-party, local modules
-- Use relative paths with `../` for parent directories
-- Export functions/objects at the end of files
-
-### Step 4: Error Handling Implementation
-**Implement comprehensive error handling patterns:**
-
-```javascript
-// Async operation error handling
-export async function processAgentRequest(request) {
-  try {
-    // Validate input
-    const validation = validateAgentInput(request);
-    if (!validation.isValid) {
-      throw new AgentValidationError(validation.errors);
-    }
-
-    // Process request
-    const result = await performAgentProcessing(request);
-    
-    // Log success
-    logger.info('Agent request processed successfully', { 
-      requestId: request.id,
-      processingTime: Date.now() - request.timestamp 
-    });
-    
-    return result;
-  } catch (error) {
-    // Log error with context
-    logger.error('Agent request processing failed', {
-      requestId: request.id,
-      error: error.message,
-      stack: error.stack
+  if (!validation.passed) {
+    console.warn('Code standards violations found:');
+    validation.issues.forEach(issue => {
+      console.warn(`- ${issue.type}: ${issue.message} (line ${issue.line})`);
     });
 
-    // Handle specific error types
-    if (error instanceof AgentValidationError) {
-      return { success: false, error: 'Invalid input', details: error.details };
-    }
-    
-    if (error instanceof DatabaseError) {
-      return { success: false, error: 'Database operation failed', retry: true };
-    }
-
-    // Generic error response
-    return { success: false, error: 'Internal processing error' };
+    // Auto-fix where possible
+    const fixedCode = autoFixStandardsViolations(code, validation.issues);
+    return fixedCode;
   }
-}
 
-// Middleware error handling
-export function errorHandlingMiddleware(err, req, res, next) {
-  // Log error
-  logger.error('Request error', {
-    method: req.method,
-    url: req.url,
-    error: err.message,
-    stack: err.stack
-  });
-
-  // Determine appropriate response
-  const statusCode = getHttpStatusCode(err);
-  const errorResponse = formatErrorResponse(err);
-
-  res.status(statusCode).json(errorResponse);
+  return code;
 }
 ```
 
-**Error Handling Standards:**
-- Use try/catch for async operations
-- Log errors with context
-- Return appropriate HTTP status codes
-- Use middleware for centralized error handling
-
-### Step 5: Database Standards Application
-**Implement secure database interaction patterns:**
+### Step 4: Database Standards Implementation
+**Ensure database interactions follow security and performance standards:**
 
 ```javascript
-// Parameterized query usage
-export async function getAgentById(agentId) {
-  const query = `
-    SELECT id, name, status, created_at, updated_at
-    FROM agents
-    WHERE id = $1 AND organization_id = $2
-  `;
-  
-  const values = [agentId, getCurrentOrganizationId()];
-  
-  try {
-    const result = await db.query(query, values);
-    return result.rows[0] || null;
-  } catch (error) {
-    logger.error('Database query failed', { agentId, error: error.message });
-    throw new DatabaseError('Failed to retrieve agent', error);
+// Database standards application
+class DatabaseStandardsEnforcer {
+  constructor(dbClient) {
+    this.db = dbClient;
+    this.queryValidator = new QueryValidator();
+  }
+
+  async executeQuery(query, params) {
+    // Validate query for security
+    const validation = this.queryValidator.validate(query, params);
+
+    if (!validation.safe) {
+      throw new SecurityError(`Unsafe query detected: ${validation.issues.join(', ')}`);
+    }
+
+    // Execute with proper error handling
+    try {
+      const result = await this.db.query(query, params);
+      this.logQueryExecution(query, params, result.rowCount);
+      return result;
+    } catch (error) {
+      this.logQueryError(query, params, error);
+      throw new DatabaseError('Query execution failed', error);
+    }
+  }
+
+  // Transaction wrapper with standards
+  async executeTransaction(operations) {
+    const client = await this.db.getClient();
+
+    try {
+      await client.query('BEGIN');
+
+      for (const operation of operations) {
+        await this.executeQuery(operation.query, operation.params);
+      }
+
+      await client.query('COMMIT');
+      this.logTransactionSuccess(operations.length);
+
+    } catch (error) {
+      await client.query('ROLLBACK');
+      this.logTransactionFailure(error);
+      throw error;
+    } finally {
+      client.release();
+    }
   }
 }
 
-// Transaction handling
-export async function createAgentWithPermissions(agentData, permissions) {
-  const client = await db.getClient();
-  
-  try {
-    await client.query('BEGIN');
-    
-    // Insert agent
-    const agentResult = await client.query(`
-      INSERT INTO agents (name, type, organization_id, created_by)
-      VALUES ($1, $2, $3, $4)
-      RETURNING id
-    `, [agentData.name, agentData.type, agentData.organizationId, agentData.createdBy]);
-    
-    const agentId = agentResult.rows[0].id;
-    
-    // Insert permissions
-    for (const permission of permissions) {
-      await client.query(`
-        INSERT INTO agent_permissions (agent_id, permission_type, resource)
-        VALUES ($1, $2, $3)
-      `, [agentId, permission.type, permission.resource]);
-    }
-    
-    await client.query('COMMIT');
-    
-    logger.info('Agent created with permissions', { agentId, permissionCount: permissions.length });
-    
-    return { agentId, success: true };
-  } catch (error) {
-    await client.query('ROLLBACK');
-    logger.error('Agent creation failed', { error: error.message });
-    throw error;
-  } finally {
-    client.release();
-  }
-}
+// Usage
+const dbEnforcer = new DatabaseStandardsEnforcer(dbClient);
+const result = await dbEnforcer.executeQuery(
+  'SELECT * FROM agents WHERE id = $1 AND organization_id = $2',
+  [agentId, orgId]
+);
 ```
 
-**Database Standards:**
-- Use parameterized queries to prevent SQL injection
-- Follow naming conventions: snake_case for columns, camelCase for JS
-- Include foreign key constraints
-- Add indexes for frequently queried columns
-- Use transactions for multi-step operations
-
-### Step 6: API Design Standards Implementation
-**Apply RESTful API design patterns:**
+### Step 5: API Standards Implementation
+**Apply RESTful API design patterns with proper error handling:**
 
 ```javascript
-// RESTful endpoint structure
-export function setupAgentRoutes(app) {
+// API standards implementation
+function createStandardsCompliantRouter(basePath) {
   const router = express.Router();
-  
-  // GET /api/agents - List agents
-  router.get('/agents', async (req, res) => {
+
+  // Apply standard middleware
+  router.use(standardMiddleware.cors);
+  router.use(standardMiddleware.requestLogging);
+  router.use(standardMiddleware.rateLimiting);
+  router.use(standardMiddleware.inputValidation);
+
+  // Standard CRUD endpoints
+  router.get(`${basePath}`, async (req, res) => {
     try {
-      const { page = 1, limit = 10, status } = req.query;
-      const agents = await agentService.getAgents({ page, limit, status });
-      
-      res.json({
-        success: true,
-        data: agents,
-        pagination: { page, limit, total: agents.length }
-      });
+      const result = await handleGetRequest(req.query);
+      res.json(standardResponse.success(result));
     } catch (error) {
-      logger.error('Failed to retrieve agents', { error: error.message });
-      res.status(500).json({ success: false, error: 'Internal server error' });
+      res.status(getHttpStatus(error)).json(standardResponse.error(error));
     }
   });
-  
-  // POST /api/agents - Create agent
-  router.post('/agents', async (req, res) => {
+
+  router.post(`${basePath}`, async (req, res) => {
     try {
-      const agentData = req.body;
-      const createdAgent = await agentService.createAgent(agentData);
-      
-      res.status(201).json({
-        success: true,
-        data: createdAgent,
-        message: 'Agent created successfully'
-      });
+      const result = await handlePostRequest(req.body);
+      res.status(201).json(standardResponse.success(result, 'Created successfully'));
     } catch (error) {
-      if (error instanceof ValidationError) {
-        res.status(400).json({ success: false, error: error.message });
-      } else {
-        logger.error('Failed to create agent', { error: error.message });
-        res.status(500).json({ success: false, error: 'Internal server error' });
-      }
+      res.status(getHttpStatus(error)).json(standardResponse.error(error));
     }
   });
-  
-  // GET /api/agents/:id - Get specific agent
-  router.get('/agents/:id', async (req, res) => {
-    try {
-      const agent = await agentService.getAgentById(req.params.id);
-      
-      if (!agent) {
-        return res.status(404).json({ success: false, error: 'Agent not found' });
-      }
-      
-      res.json({ success: true, data: agent });
-    } catch (error) {
-      logger.error('Failed to retrieve agent', { id: req.params.id, error: error.message });
-      res.status(500).json({ success: false, error: 'Internal server error' });
-    }
-  });
-  
-  // PUT /api/agents/:id - Update agent
-  router.put('/agents/:id', async (req, res) => {
-    try {
-      const updatedAgent = await agentService.updateAgent(req.params.id, req.body);
-      
-      if (!updatedAgent) {
-        return res.status(404).json({ success: false, error: 'Agent not found' });
-      }
-      
-      res.json({
-        success: true,
-        data: updatedAgent,
-        message: 'Agent updated successfully'
-      });
-    } catch (error) {
-      if (error instanceof ValidationError) {
-        res.status(400).json({ success: false, error: error.message });
-      } else {
-        logger.error('Failed to update agent', { id: req.params.id, error: error.message });
-        res.status(500).json({ success: false, error: 'Internal server error' });
-      }
-    }
-  });
-  
-  // DELETE /api/agents/:id - Delete agent
-  router.delete('/agents/:id', async (req, res) => {
-    try {
-      const deleted = await agentService.deleteAgent(req.params.id);
-      
-      if (!deleted) {
-        return res.status(404).json({ success: false, error: 'Agent not found' });
-      }
-      
-      res.json({ success: true, message: 'Agent deleted successfully' });
-    } catch (error) {
-      logger.error('Failed to delete agent', { id: req.params.id, error: error.message });
-      res.status(500).json({ success: false, error: 'Internal server error' });
-    }
-  });
-  
-  // Health check endpoint
+
+  // Add standard health check
   router.get('/health', (req, res) => {
-    res.json({ 
-      status: 'healthy', 
+    res.json({
+      status: 'healthy',
       timestamp: new Date().toISOString(),
-      service: 'agent-api'
+      service: basePath.replace('/', ''),
+      standards: 'compliant'
     });
   });
-  
-  app.use('/api', router);
+
+  return router;
 }
+
+// Standard response formatters
+const standardResponse = {
+  success: (data, message = null) => ({
+    success: true,
+    data,
+    message,
+    timestamp: new Date().toISOString()
+  }),
+
+  error: (error) => ({
+    success: false,
+    error: error.message,
+    type: error.constructor.name,
+    timestamp: new Date().toISOString()
+  })
+};
 ```
 
-**API Design Standards:**
-- RESTful endpoints with consistent naming
-- Use HTTP methods appropriately (GET, POST, PUT, DELETE)
-- Include request logging middleware
-- Health check endpoint at `/health`
-- Version API endpoints when needed
-
-### Step 7: Security Standards Implementation
-**Apply security best practices:**
+### Step 6: Security Standards Application
+**Implement comprehensive security measures:**
 
 ```javascript
-// Input validation middleware
-export function validateAgentInput(req, res, next) {
-  const { name, type, configuration } = req.body;
-  
-  // Required field validation
-  if (!name || typeof name !== 'string' || name.length > 100) {
-    return res.status(400).json({ 
-      success: false, 
-      error: 'Invalid name: must be string, max 100 characters' 
-    });
+// Security standards enforcer
+class SecurityStandardsEnforcer {
+  constructor() {
+    this.inputValidator = new InputValidator();
+    this.authMiddleware = new AuthMiddleware();
+    this.rateLimiter = new RateLimiter();
   }
-  
-  if (!type || !['document-analysis', 'data-extraction', 'workflow'].includes(type)) {
-    return res.status(400).json({ 
-      success: false, 
-      error: 'Invalid type: must be one of document-analysis, data-extraction, workflow' 
-    });
-  }
-  
-  // Sanitize configuration object
-  if (configuration) {
-    req.body.configuration = sanitizeConfiguration(configuration);
-  }
-  
-  next();
-}
 
-// Authentication middleware
-export function requireAuthentication(req, res, next) {
-  const authHeader = req.headers.authorization;
-  
-  if (!authHeader || !authHeader.startsWith('Bearer ')) {
-    return res.status(401).json({ success: false, error: 'Missing or invalid authorization header' });
+  applySecurityMiddleware(app) {
+    // Apply in correct order
+    app.use(this.rateLimiter.middleware());
+    app.use(this.authMiddleware.requireAuth());
+    app.use(this.inputValidator.sanitizeMiddleware());
   }
-  
-  const token = authHeader.substring(7); // Remove 'Bearer ' prefix
-  
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded;
-    next();
-  } catch (error) {
-    logger.warn('Invalid JWT token', { error: error.message });
-    res.status(401).json({ success: false, error: 'Invalid or expired token' });
+
+  validateInput(data, schema) {
+    return this.inputValidator.validate(data, schema);
+  }
+
+  generateSecureToken(payload) {
+    return jwt.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: '24h',
+      issuer: 'construct-ai'
+    });
+  }
+
+  hashPassword(password) {
+    return bcrypt.hash(password, 12);
+  }
+
+  verifyPassword(password, hash) {
+    return bcrypt.compare(password, hash);
   }
 }
 
-// SQL injection prevention
-export async function getAgentWithPermissions(agentId) {
-  // Use parameterized queries
-  const query = `
-    SELECT a.*, array_agg(ap.permission_type) as permissions
-    FROM agents a
-    LEFT JOIN agent_permissions ap ON a.id = ap.agent_id
-    WHERE a.id = $1 AND a.organization_id = $2
-    GROUP BY a.id
-  `;
-  
-  const values = [agentId, getCurrentOrganizationId()];
-  
-  const result = await db.query(query, values);
-  return result.rows[0];
-}
+// Usage in routes
+const security = new SecurityStandardsEnforcer();
 
-// Rate limiting
-export function createRateLimiter() {
-  return rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100, // Limit each IP to 100 requests per windowMs
-    message: {
-      success: false,
-      error: 'Too many requests from this IP, please try again later'
-    },
-    standardHeaders: true,
-    legacyHeaders: false
-  });
-}
-```
+router.post('/agents', security.authMiddleware.requireAuth(), async (req, res) => {
+  // Validate input
+  const validation = security.validateInput(req.body, agentCreationSchema);
+  if (!validation.valid) {
+    return res.status(400).json(standardResponse.error(new ValidationError(validation.errors)));
+  }
 
-**Security Standards:**
-- Validate user input
-- Use authentication middleware
-- Sanitize database inputs
-- Log security events
-- Implement rate limiting
+  // Hash sensitive data if needed
+  if (req.body.password) {
+    req.body.passwordHash = await security.hashPassword(req.body.password);
+    delete req.body.password;
+  }
 
-### Step 8: Testing Standards Application
-**Implement comprehensive testing patterns:**
-
-```javascript
-// Unit test structure
-describe('AgentService', () => {
-  let mockDb;
-  let agentService;
-  
-  beforeEach(() => {
-    mockDb = createMockDatabase();
-    agentService = new AgentService(mockDb);
-  });
-  
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
-  
-  describe('getAgentById', () => {
-    it('should return agent when found', async () => {
-      const mockAgent = { id: 1, name: 'Test Agent', status: 'active' };
-      mockDb.query.mockResolvedValue({ rows: [mockAgent] });
-      
-      const result = await agentService.getAgentById(1);
-      
-      expect(result).toEqual(mockAgent);
-      expect(mockDb.query).toHaveBeenCalledWith(
-        expect.stringContaining('SELECT'),
-        [1, expect.any(String)]
-      );
-    });
-    
-    it('should return null when agent not found', async () => {
-      mockDb.query.mockResolvedValue({ rows: [] });
-      
-      const result = await agentService.getAgentById(999);
-      
-      expect(result).toBeNull();
-    });
-    
-    it('should throw DatabaseError on query failure', async () => {
-      mockDb.query.mockRejectedValue(new Error('Database connection failed'));
-      
-      await expect(agentService.getAgentById(1)).rejects.toThrow(DatabaseError);
-    });
-  });
-});
-
-// Integration test structure
-describe('Agent API Integration', () => {
-  let app;
-  let server;
-  let testDb;
-  
-  beforeAll(async () => {
-    testDb = await createTestDatabase();
-    app = createTestApp(testDb);
-    server = app.listen(3001);
-  });
-  
-  afterAll(async () => {
-    await testDb.cleanup();
-    server.close();
-  });
-  
-  describe('POST /api/agents', () => {
-    it('should create agent successfully', async () => {
-      const agentData = {
-        name: 'Integration Test Agent',
-        type: 'document-analysis',
-        configuration: { model: 'gpt-4', temperature: 0.7 }
-      };
-      
-      const response = await request(app)
-        .post('/api/agents')
-        .set('Authorization', `Bearer ${testToken}`)
-        .send(agentData)
-        .expect(201);
-      
-      expect(response.body.success).toBe(true);
-      expect(response.body.data).toHaveProperty('id');
-      expect(response.body.data.name).toBe(agentData.name);
-    });
-    
-    it('should return 400 for invalid input', async () => {
-      const invalidData = { name: '', type: 'invalid-type' };
-      
-      const response = await request(app)
-        .post('/api/agents')
-        .set('Authorization', `Bearer ${testToken}`)
-        .send(invalidData)
-        .expect(400);
-      
-      expect(response.body.success).toBe(false);
-      expect(response.body.error).toContain('Invalid');
-    });
-  });
+  // Proceed with secure data
+  const result = await createAgent(req.body);
+  res.status(201).json(standardResponse.success(result));
 });
 ```
 
-**Testing Standards:**
-- Write unit tests for utility functions
-- Integration tests for API endpoints
-- Use descriptive test names
-- Mock external dependencies
-
-### Step 9: Prompt Key Standards Implementation
-**Apply standardized prompt key naming conventions:**
+### Step 7: Testing Standards Implementation
+**Apply comprehensive testing standards:**
 
 ```javascript
-// Prompt key validation
-class PromptKeyValidator {
+// Testing standards implementation
+class TestingStandardsEnforcer {
   constructor() {
-    this.pattern = /^[a-z]+_[a-z]+_[a-z0-9]+_[a-z]+$/;
-    this.categories = ['agent', 'specialist', 'function', 'system'];
+    this.testRunner = new JestRunner();
+    this.coverageReporter = new CoverageReporter();
+    this.mockGenerator = new MockGenerator();
   }
-  
-  validate(key) {
-    if (!this.pattern.test(key)) {
-      return {
-        isValid: false,
-        error: 'Key must be lowercase with underscore separation'
-      };
+
+  async runStandardsTests(testFiles) {
+    // Setup test environment
+    await this.setupTestEnvironment();
+
+    // Run tests with coverage
+    const results = await this.testRunner.run(testFiles, {
+      coverage: true,
+      coverageThreshold: {
+        global: {
+          branches: 80,
+          functions: 80,
+          lines: 80,
+          statements: 80
+        }
+      }
+    });
+
+    // Validate results against standards
+    const standardsValidation = this.validateTestStandards(results);
+
+    if (!standardsValidation.passed) {
+      console.error('Testing standards violations:');
+      standardsValidation.issues.forEach(issue => console.error(`- ${issue}`));
     }
-    
-    const parts = key.split('_');
-    const category = parts[0];
-    
-    if (!this.categories.includes(category)) {
-      return {
-        isValid: false,
-        error: `Invalid category. Must be one of: ${this.categories.join(', ')}`
-      };
-    }
-    
-    return { isValid: true, category, subcategory: parts[1] };
+
+    return { results, standardsValidation };
   }
-  
-  generateKey(category, subcategory, identifier, purpose) {
-    return `${category}_${subcategory}_${identifier}_${purpose}`;
+
+  validateTestStandards(results) {
+    const issues = [];
+
+    // Check coverage thresholds
+    if (results.coverage.global.branches < 80) {
+      issues.push(`Branch coverage too low: ${results.coverage.global.branches}% (required: 80%)`);
+    }
+
+    // Check test naming conventions
+    results.testResults.forEach(testFile => {
+      testFile.testResults.forEach(test => {
+        if (!test.title.match(/should .+/)) {
+          issues.push(`Test name should start with 'should': "${test.title}"`);
+        }
+      });
+    });
+
+    return {
+      passed: issues.length === 0,
+      issues
+    };
   }
 }
 
-// Usage examples
-const validator = new PromptKeyValidator();
-
-// Valid keys
-console.log(validator.validate('agent_correspondence_01_document_analysis')); // { isValid: true }
-console.log(validator.validate('specialist_discipline_civil_engineering')); // { isValid: true }
-
-// Invalid keys
-console.log(validator.validate('AGENT_CORRESPONDENCE_01')); // { isValid: false }
-console.log(validator.validate('invalid_key')); // { isValid: false }
-
-// Generate keys
-const key = validator.generateKey('agent', 'correspondence', '07', 'professional_formatting');
-// Result: 'agent_correspondence_07_professional_formatting'
+// Usage
+const tester = new TestingStandardsEnforcer();
+const testResults = await tester.runStandardsTests([
+  'server/tests/unit/**/*.test.js',
+  'server/tests/integration/**/*.test.js'
+]);
 ```
 
-**Prompt Key Standards:**
-- Always lowercase with underscore separation
-- Hierarchical structure: category_subcategory_identifier_purpose
-- Valid categories: agent, specialist, function, system
-- Use PromptKeyValidator for validation
-
-### Step 10: Governance Integration Implementation
-**Integrate with 11-Agent Governance Swarm:**
+### Step 8: Prompt Key Standards Validation
+**Ensure prompt keys follow naming conventions:**
 
 ```javascript
-// Governance integration
-import { with_governance } from 'deep-agents/agents/shared/governance';
-
-class ConstructAIAgent {
+// Prompt key standards validation
+class PromptKeyStandardsValidator {
   constructor() {
-    this.jurisdiction = 'FI'; // Primary jurisdiction
-    this.strictMode = true;
+    this.validator = new PromptKeyValidator();
+    this.auditor = new PromptKeyAuditor();
   }
-  
-  @with_governance({ jurisdiction: 'FI', strict_mode: true })
-  async processRequest(request) {
-    // Agent logic with automatic governance validation
-    const complianceCheck = await this.checkCompliance(request);
-    
-    if (complianceCheck.blocked) {
-      return {
-        success: false,
-        error: 'Request blocked by governance policy',
-        reason: complianceCheck.reason
-      };
+
+  async validateProjectPromptKeys(projectRoot) {
+    // Find all prompt key usages
+    const keyUsages = await this.findPromptKeyUsages(projectRoot);
+
+    // Validate each key
+    const validationResults = keyUsages.map(usage => ({
+      file: usage.file,
+      line: usage.line,
+      key: usage.key,
+      validation: this.validator.validate(usage.key)
+    }));
+
+    // Report violations
+    const violations = validationResults.filter(r => !r.validation.isValid);
+    if (violations.length > 0) {
+      console.error('Prompt key violations found:');
+      violations.forEach(v => {
+        console.error(`${v.file}:${v.line} - ${v.key}: ${v.validation.error}`);
+      });
     }
-    
-    // Process request with governance monitoring
-    const result = await this.executeWithAuditing(request);
-    
-    // Log for compliance
-    await this.logGovernanceEvent('request_processed', {
-      requestId: request.id,
-      jurisdiction: this.jurisdiction,
-      compliance: result.compliance
-    });
-    
-    return result;
+
+    return {
+      total: keyUsages.length,
+      valid: validationResults.filter(r => r.validation.isValid).length,
+      violations: violations.length,
+      results: validationResults
+    };
   }
-  
-  async checkCompliance(request) {
-    // Check against AIUC-1, ISO 42001, ISO 27701, EU AI Act, NIS2
-    const complianceResult = await governanceSwarm.evaluateCompliance(request, {
-      jurisdiction: this.jurisdiction,
-      strictMode: this.strictMode
-    });
-    
-    return complianceResult;
+
+  async findPromptKeyUsages(projectRoot) {
+    // Search for getPromptByKey calls
+    const pattern = /getPromptByKey\(['"]([^'"]+)['"]\)/g;
+    const usages = [];
+
+    // Search in JavaScript/TypeScript files
+    const files = await glob('**/*.{js,ts,jsx,tsx}', { cwd: projectRoot });
+
+    for (const file of files) {
+      const content = await fs.readFile(path.join(projectRoot, file), 'utf8');
+      let match;
+      let lineNum = 1;
+
+      while ((match = pattern.exec(content)) !== null) {
+        const beforeMatch = content.substring(0, match.index);
+        lineNum = (beforeMatch.match(/\n/g) || []).length + 1;
+
+        usages.push({
+          file,
+          line: lineNum,
+          key: match[1]
+        });
+      }
+    }
+
+    return usages;
   }
 }
 
-// Governance compliance checklist verification
-function verifyGovernanceCompliance(agent) {
-  const checklist = {
-    governanceDecorator: agent.hasGovernanceDecorator,
-    jurisdictionSpecified: agent.jurisdiction !== undefined,
-    strictModeEnabled: agent.strictMode === true,
-    auditLogging: agent.hasAuditLogging,
-    complianceHandling: agent.handlesBlockedRequests
-  };
-  
-  const passed = Object.values(checklist).every(item => item === true);
-  
-  if (!passed) {
-    const failedItems = Object.entries(checklist)
-      .filter(([_, passed]) => !passed)
-      .map(([item, _]) => item);
-    
-    throw new Error(`Governance compliance failed: ${failedItems.join(', ')}`);
-  }
-  
-  return { passed: true, checklist };
-}
+// Usage
+const promptValidator = new PromptKeyStandardsValidator();
+const validation = await promptValidator.validateProjectPromptKeys('./');
+console.log(`Prompt keys: ${validation.valid}/${validation.total} valid`);
 ```
 
-**Governance Standards:**
-- Use @with_governance decorator
-- Specify primary jurisdiction
-- Enable strict mode for compliance
-- Implement audit logging
-- Handle governance_blocked results
+### Step 9: Governance Standards Integration
+**Apply governance compliance requirements:**
+
+```javascript
+// Governance standards integration
+class GovernanceStandardsEnforcer {
+  constructor() {
+    this.jurisdiction = process.env.PRIMARY_JURISDICTION || 'FI';
+    this.strictMode = process.env.GOVERNANCE_STRICT_MODE === 'true';
+  }
+
+  applyGovernanceDecorator(targetClass) {
+    // Apply @with_governance decorator
+    return with_governance({
+      jurisdiction: this.jurisdiction,
+      strict_mode: this.strictMode
+    })(targetClass);
+  }
+
+  async validateGovernanceCompliance(agentCode) {
+    const checklist = {
+      hasGovernanceDecorator: this.checkGovernanceDecorator(agentCode),
+      specifiesJurisdiction: this.checkJurisdictionDeclaration(agentCode),
+      handlesBlockedResults: this.checkBlockedResultHandling(agentCode),
+      implementsAuditLogging: this.checkAuditLogging(agentCode),
+      validatesCompliance: this.checkComplianceValidation(agentCode)
+    };
+
+    const passed = Object.values(checklist).every(item => item === true);
+
+    if (!passed) {
+      const failures = Object.entries(checklist)
+        .filter(([_, passed]) => !passed)
+        .map(([check, _]) => check);
+
+      throw new GovernanceError(`Governance compliance failed: ${failures.join(', ')}`);
+    }
+
+    return { passed: true, checklist };
+  }
+
+  checkGovernanceDecorator(code) {
+    return code.includes('@with_governance') || code.includes('with_governance(');
+  }
+
+  checkJurisdictionDeclaration(code) {
+    return code.includes(`jurisdiction: '${this.jurisdiction}'`) ||
+           code.includes(`jurisdiction: "${this.jurisdiction}"`);
+  }
+
+  checkBlockedResultHandling(code) {
+    return code.includes('governance_blocked') ||
+           code.includes('blocked') && code.includes('governance');
+  }
+
+  checkAuditLogging(code) {
+    return code.includes('logGovernanceEvent') ||
+           code.includes('audit') && code.includes('governance');
+  }
+
+  checkComplianceValidation(code) {
+    return code.includes('evaluateCompliance') ||
+           code.includes('checkCompliance');
+  }
+}
+
+// Usage
+const governance = new GovernanceStandardsEnforcer();
+const GovernedAgent = governance.applyGovernanceDecorator(MyAgent);
+
+// Validate compliance
+const compliance = await governance.validateGovernanceCompliance(agentSourceCode);
+```
+
+### Step 10: Standards Compliance Verification
+**Run comprehensive compliance checks:**
+
+```javascript
+// Comprehensive standards verification
+class StandardsComplianceVerifier {
+  constructor() {
+    this.checkers = {
+      environment: new EnvironmentStandardsChecker(),
+      code: new CodeStandardsChecker(),
+      database: new DatabaseStandardsChecker(),
+      api: new APIStandardsChecker(),
+      security: new SecurityStandardsChecker(),
+      testing: new TestingStandardsChecker(),
+      promptKeys: new PromptKeyStandardsChecker(),
+      governance: new GovernanceStandardsChecker()
+    };
+  }
+
+  async runFullComplianceCheck(projectRoot) {
+    console.log('🔍 Running comprehensive standards compliance check...');
+
+    const results = {};
+    let allPassed = true;
+
+    for (const [standard, checker] of Object.entries(this.checkers)) {
+      console.log(`Checking ${standard} standards...`);
+      try {
+        const result = await checker.check(projectRoot);
+        results[standard] = result;
+
+        if (!result.passed) {
+          allPassed = false;
+          console.error(`❌ ${standard}: ${result.issues.length} issues found`);
+          result.issues.forEach(issue => console.error(`  - ${issue}`));
+        } else {
+          console.log(`✅ ${standard}: Passed`);
+        }
+      } catch (error) {
+        allPassed = false;
+        results[standard] = { passed: false, error: error.message };
+        console.error(`❌ ${standard}: Check failed - ${error.message}`);
+      }
+    }
+
+    // Generate compliance report
+    const report = this.generateComplianceReport(results, allPassed);
+
+    console.log('\n📊 Compliance Summary:');
+    console.log(`Overall: ${allPassed ? '✅ PASSED' : '❌ FAILED'}`);
+    console.log(`Passed: ${Object.values(results).filter(r => r.passed).length}/${Object.keys(results).length}`);
+
+    return { allPassed, results, report };
+  }
+
+  generateComplianceReport(results, allPassed) {
+    return {
+      timestamp: new Date().toISOString(),
+      overall: allPassed ? 'compliant' : 'non-compliant',
+      standards: results,
+      recommendations: this.generateRecommendations(results)
+    };
+  }
+
+  generateRecommendations(results) {
+    const recommendations = [];
+
+    if (!results.environment?.passed) {
+      recommendations.push('Fix environment setup issues before development');
+    }
+
+    if (!results.security?.passed) {
+      recommendations.push('Address security vulnerabilities immediately');
+    }
+
+    if (!results.governance?.passed) {
+      recommendations.push('Implement governance compliance requirements');
+    }
+
+    if (!results.testing?.passed) {
+      recommendations.push('Improve test coverage and quality');
+    }
+
+    return recommendations;
+  }
+}
+
+// Run compliance check
+const verifier = new StandardsComplianceVerifier();
+const compliance = await verifier.runFullComplianceCheck('./');
+```
 
 ## Success Criteria
 
-- [ ] Environment setup verified and compliant
-- [ ] File structure follows Construct AI standards
-- [ ] ES6 import/export conventions applied
-- [ ] Comprehensive error handling implemented
-- [ ] Database interactions use parameterized queries
+- [ ] Reference standards documentation reviewed
+- [ ] Environment meets all requirements
+- [ ] Code follows naming and structural standards
+- [ ] Database interactions use secure patterns
 - [ ] API endpoints follow RESTful design
-- [ ] Security measures implemented
-- [ ] Testing standards applied
-- [ ] Prompt key naming conventions followed
+- [ ] Security measures properly implemented
+- [ ] Testing standards applied comprehensively
+- [ ] Prompt keys validated for naming compliance
 - [ ] Governance integration completed
+- [ ] Full compliance verification passed
 
 ## Common Pitfalls
 
-1. **Inconsistent Naming** - Always use camelCase for JS, snake_case for DB
-2. **Missing Input Validation** - Validate all user inputs before processing
-3. **SQL Injection Vulnerabilities** - Always use parameterized queries
-4. **Inadequate Error Handling** - Log errors with context and return appropriate responses
-5. **Security Oversights** - Implement authentication and authorization
-6. **Poor API Design** - Follow RESTful conventions and proper HTTP status codes
-7. **Missing Tests** - Write unit and integration tests for all functionality
-8. **Invalid Prompt Keys** - Use PromptKeyValidator to ensure proper naming
-9. **Governance Non-Compliance** - Always integrate with governance swarm
+1. **Not Reviewing Reference Documentation** - Always check the comprehensive standards first
+2. **Environment Setup Issues** - Verify environment before starting development
+3. **Inconsistent Application** - Apply standards systematically across all code
+4. **Missing Security Validation** - Security must be implemented at all levels
+5. **Incomplete Testing** - Tests must cover all functionality and edge cases
+6. **Invalid Prompt Keys** - Use validation tools to ensure proper naming
+7. **Governance Non-Compliance** - Governance requirements are mandatory
+8. **Skipping Compliance Checks** - Always run full verification before deployment
 
 ## Cross-References
 
-### Related Procedures
-- [Agent Development Standards](docs_construct_ai/codebase/coding-standards/0000_AGENT_DEVELOPMENT_STANDARDS.md) - Development workflow standards
-- [Code Standardization Master Plan](docs_construct_ai/codebase/coding-standards/0000_CODE_STANDARDIZATION_MASTER_PLAN.md) - Overall standardization approach
+### Primary Reference Documents
+- **[Agent Coding Standards Reference](docs_construct_ai/codebase/coding-standards/0000_AGENT_CODING_STANDARDS.md)** - Complete standards documentation
+- **[Agent Development Standards](docs_construct_ai/codebase/coding-standards/0000_AGENT_DEVELOPMENT_STANDARDS.md)** - Development workflow standards
+- **[Code Standardization Master Plan](docs_construct_ai/codebase/coding-standards/0000_CODE_STANDARDIZATION_MASTER_PLAN.md)** - Overall standardization approach
 
 ### Related Skills
 - `writing-plans` - Planning agent development
