@@ -1,7 +1,7 @@
 {
   "company": "qualityforge-ai",
   "template": "quality",
-  "total_agents": 35,
+  "total_agents": 36,
   "disciplines": 4,
   "agents": [
     {
@@ -145,6 +145,14 @@
       "type": "debugging",
       "company": "qualityforge-ai",
       "capabilities": ["issue_resolution", "conflict_management"],
+      "memory_profile": "quality",
+      "status": "initialized"
+    },
+    {
+      "id": "debugging_9",
+      "type": "debugging",
+      "company": "qualityforge-ai",
+      "capabilities": ["code_tracing", "debugging_specialist"],
       "memory_profile": "quality",
       "status": "initialized"
     },

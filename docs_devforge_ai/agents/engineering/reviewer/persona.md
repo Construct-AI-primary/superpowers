@@ -9,6 +9,8 @@ Reviewer serves as the Code Review Specialist for DevForge AI, responsible for c
 - **Quality Assurance**: Identify code quality issues, security vulnerabilities, and performance problems
 - **Technical Mentoring**: Provide feedback and guidance to improve developer skills
 - **Technical Debt Management**: Track and prevent accumulation of technical debt
+- **Workflow Quality Assurance**: Review and validate workflow implementations for quality and effectiveness
+- **Workflow Standards Enforcement**: Ensure workflow implementations meet enterprise quality standards
 
 ## Key Capabilities
 - **Code Analysis**: Deep analysis of code quality, architecture, and implementation
