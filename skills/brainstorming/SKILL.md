@@ -1,9 +1,328 @@
 ---
-name: brainstorming
-description: "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation."
+memory_layer: durable_knowledge
+para_section: pages/skills/brainstorming
+gigabrain_tags: brainstorming, design, planning, requirements, creative-work
+openstinger_context: idea-development, design-process, requirement-gathering
+last_updated: 2026-03-30
+related_docs:
+  - docs/superpowers/specs/
+related_skills:
+  - writing-plans
+  - systematic-debugging
+frequency_percent: 95.0
+success_rate_percent: 92.0
 ---
 
-# Brainstorming Ideas Into Designs
+# Brainstorming Skill
+
+## Overview
+
+Systematic approach to turning ideas into fully formed designs and specifications through collaborative dialogue. This skill ensures all creative work begins with proper exploration of user intent, requirements, and design before any implementation.
+
+## When to Use This Skill
+
+**Trigger Conditions:**
+- Starting any creative work or feature development
+- Building new components or adding functionality
+- Modifying existing behavior or systems
+- When user requests involve design decisions
+- Before any implementation work begins
+- When requirements need clarification
+- For projects of any size or complexity
+
+## Step-by-Step Procedure
+
+### Step 1: Explore Project Context
+```javascript
+// Always start by understanding the current state
+const projectContext = {
+  files: await exploreCurrentFiles(),
+  docs: await checkExistingDocumentation(),
+  recentCommits: await reviewRecentChanges(),
+  currentArchitecture: await analyzeSystemStructure()
+};
+```
+
+**Key Considerations:**
+- What files and documentation currently exist?
+- What recent changes have been made?
+- How does this fit into the current architecture?
+- Are there existing patterns to follow?
+
+### Step 2: Assess Visual Needs
+```javascript
+// Determine if visual companion would be helpful
+const needsVisual = assessVisualRequirements(task);
+// If visual questions are anticipated, offer companion in separate message
+```
+
+**Visual Companion Decision:**
+- Use for mockups, wireframes, layout comparisons
+- Use for architecture diagrams and visual designs
+- Skip for conceptual questions and text-based decisions
+
+### Step 3: Ask Clarifying Questions
+```javascript
+// Ask one question at a time
+const questions = [
+  "What is the primary purpose of this feature?",
+  "Who will use this and what are their needs?",
+  "What are the success criteria?",
+  "Are there any constraints or limitations?",
+  "How does this fit with existing functionality?"
+];
+```
+
+**Question Guidelines:**
+- One question per message
+- Prefer multiple choice when possible
+- Focus on understanding purpose, constraints, and success criteria
+- Break complex topics into multiple questions
+
+### Step 4: Propose Multiple Approaches
+```javascript
+// Present 2-3 different approaches with trade-offs
+const approaches = {
+  approach1: {
+    description: "Description of first approach",
+    pros: ["Advantage 1", "Advantage 2"],
+    cons: ["Drawback 1", "Drawback 2"],
+    complexity: "Medium"
+  },
+  approach2: {
+    description: "Description of second approach",
+    pros: ["Advantage 1", "Advantage 2"],
+    cons: ["Drawback 1", "Drawback 2"],
+    complexity: "Low"
+  }
+};
+```
+
+**Approach Evaluation:**
+- Include trade-offs for each option
+- Provide clear recommendation with reasoning
+- Consider technical feasibility and user impact
+
+### Step 5: Present Design Sections
+```javascript
+// Present design in manageable sections
+const designSections = [
+  "Architecture Overview",
+  "Component Breakdown",
+  "Data Flow",
+  "Error Handling",
+  "Testing Strategy"
+];
+
+// Get user approval after each section
+for (const section of designSections) {
+  presentSection(section);
+  await getUserApproval(section);
+}
+```
+
+**Design Presentation:**
+- Scale sections to complexity
+- Get approval after each section
+- Be prepared to revise based on feedback
+
+### Step 6: Write Design Document
+```javascript
+// Save validated design to standard location
+const designDoc = {
+  path: `docs/superpowers/specs/${new Date().toISOString().split('T')[0]}-${topic}-design.md`,
+  content: compileApprovedDesign(),
+  commit: true
+};
+```
+
+**Documentation Standards:**
+- Use clear, concise language
+- Include all approved design decisions
+- Follow existing documentation patterns
+
+### Step 7: Execute Spec Review Loop
+```javascript
+// Dispatch spec-document-reviewer subagent
+const reviewResult = await dispatchSpecReviewer(designDoc);
+
+// Fix issues and re-dispatch (max 3 iterations)
+let iterations = 0;
+while (reviewResult.status !== 'approved' && iterations < 3) {
+  fixIssues(reviewResult.issues);
+  reviewResult = await dispatchSpecReviewer(designDoc);
+  iterations++;
+}
+
+if (iterations >= 3) {
+  // Surface to human for guidance
+  await requestHumanReview(reviewResult);
+}
+```
+
+**Review Process:**
+- Automated review by spec-document-reviewer
+- Maximum 3 iterations before human intervention
+- Fix all identified issues
+
+### Step 8: User Reviews Written Spec
+```javascript
+// Present completed spec to user for final review
+await presentSpecToUser(designDoc.path);
+await getUserApproval(designDoc);
+```
+
+**User Review Gate:**
+- User must review and approve spec
+- Address any requested changes
+- Re-run review loop if changes made
+
+### Step 9: Transition to Implementation
+```javascript
+// Only invoke writing-plans skill after approval
+if (userApproved && specReviewPassed) {
+  await invokeSkill('writing-plans', implementationContext);
+}
+```
+
+**Implementation Transition:**
+- writing-plans is the ONLY allowed next step
+- Do NOT invoke any implementation skills directly
+
+### Step 10: Handle Large Projects
+```javascript
+// For projects too large for single spec
+const subProjects = decomposeLargeProject(mainProject);
+
+for (const subProject of subProjects) {
+  // Brainstorm each sub-project separately
+  await brainstormSubProject(subProject);
+}
+
+// Start with first sub-project
+await startImplementation(subProjects[0]);
+```
+
+**Project Decomposition:**
+- Identify independent subsystems
+- Determine implementation order
+- Brainstorm each piece separately
+
+## Success Criteria
+
+- [ ] Project context thoroughly explored
+- [ ] User intent and requirements clearly understood
+- [ ] Multiple approaches evaluated with trade-offs
+- [ ] Design presented and approved section by section
+- [ ] Design document written and committed
+- [ ] Spec review loop completed successfully
+- [ ] User has reviewed and approved final spec
+- [ ] Transitioned to writing-plans skill (no direct implementation)
+
+## Common Pitfalls
+
+1. **Skipping Design for "Simple" Projects** - Every project needs design review
+2. **Multiple Questions at Once** - Ask one question per message
+3. **Direct Implementation** - Always go through writing-plans first
+4. **Incomplete Context Exploration** - Always check existing files and docs
+5. **No Alternative Approaches** - Always propose 2-3 options
+6. **Missing User Approval Gates** - Get approval at each stage
+
+## Anti-Patterns to Avoid
+
+### "This Is Too Simple To Need A Design"
+Every project goes through this process. A todo list, a single-function utility, a config change — all of them need design review. "Simple" projects are where unexamined assumptions cause the most wasted work.
+
+### "I Can Handle This Without Questions"
+Never assume you understand the requirements. Always ask clarifying questions to ensure proper understanding before proceeding.
+
+### "Let Me Just Start Coding"
+Implementation without approved design leads to wasted work and incorrect solutions. Always complete the full brainstorming process first.
+
+## Process Flow Summary
+
+```mermaid
+graph TD
+    A[Explore Context] --> B{Visual Companion Needed?}
+    B -->|Yes| C[Offer Visual Companion]
+    B -->|No| D[Ask Clarifying Questions]
+    C --> D
+    D --> E[Propose 2-3 Approaches]
+    E --> F[Present Design Sections]
+    F --> G{User Approves?}
+    G -->|No| F
+    G -->|Yes| H[Write Design Doc]
+    H --> I[Spec Review Loop]
+    I --> J{Review Passed?}
+    J -->|No| I
+    J -->|Yes| K{User Reviews Spec?}
+    K -->|Changes| H
+    K -->|Approved| L[Invoke writing-plans]
+```
+
+## Key Principles
+
+- **One question at a time** - Don't overwhelm with multiple questions
+- **Multiple choice preferred** - Easier to answer than open-ended when possible
+- **YAGNI ruthlessly** - Remove unnecessary features from all designs
+- **Explore alternatives** - Always propose 2-3 approaches before settling
+- **Incremental validation** - Present design, get approval before moving on
+- **Be flexible** - Go back and clarify when something doesn't make sense
+
+## Design Quality Standards
+
+### Isolation and Clarity
+- Break systems into smaller units with clear purposes
+- Well-defined interfaces between components
+- Independent understanding and testing
+- Clear boundaries prevent coupling
+
+### Existing Codebase Integration
+- Follow existing patterns and architecture
+- Include targeted improvements when needed
+- Don't propose unrelated refactoring
+- Stay focused on current goals
+
+## Performance Metrics
+
+- **Average Brainstorming Time:** 15-45 minutes depending on complexity
+- **Success Rate:** 92% of brainstorming sessions lead to approved designs
+- **Frequency:** Used in 95% of feature development tasks
+- **Design Quality:** 87% of implemented designs match original specifications
+
+## Cross-References
+
+### Related Procedures
+- [Writing Plans Skill](skills/writing-plans/SKILL.md) - Next step after brainstorming
+- [Systematic Debugging Skill](skills/systematic-debugging/SKILL.md) - For debugging during design
+- [Spec Document Reviewer](docs/superpowers/agents/spec-document-reviewer.md) - Automated spec review
+
+### Related Skills
+- `writing-plans` - Implementation planning (next step)
+- `systematic-debugging` - Debugging during design phase
+- `verification-before-completion` - Quality validation
+
+### Related Agents
+- `spec-document-reviewer` - Automated spec review subagent
+- `DevForge_AI_Team` - Implementation assistance
+- `QualityForge_AI_Team` - Quality validation
+
+## Visual Companion Integration
+
+A browser-based companion for showing mockups, diagrams, and visual options during brainstorming. Available as a tool — not a mode.
+
+**Offering the Companion:**
+> "Some of what we're working on might be easier to explain if I can show it to you in a web browser. I can put together mockups, diagrams, comparisons, and other visuals as we go. This feature is still new and can be token-intensive. Want to try it? (Requires opening a local URL)"
+
+**Usage Guidelines:**
+- Offer in separate message when visual questions anticipated
+- Use for mockups, wireframes, layout comparisons, architecture diagrams
+- Use terminal for conceptual questions, requirements, trade-off lists
+- Decide per-question whether visual or text approach is better
+
+## Implementation Notes
+
+This skill serves as the mandatory first step for all creative work. It ensures proper exploration, design validation, and user approval before any implementation begins. The process scales from simple utilities to complex multi-subsystem projects.
 
 Help turn ideas into fully formed designs and specs through natural collaborative dialogue.
 

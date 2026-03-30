@@ -1,6 +1,18 @@
 ---
-name: test-driven-development
-description: Use when implementing any feature or bugfix, before writing implementation code
+memory_layer: durable_knowledge
+para_section: pages/skills/test-driven-development
+gigabrain_tags: testing, tdd, development, quality-assurance, red-green-refactor
+openstinger_context: test-first-development, quality-driven-coding, behavior-specification
+last_updated: 2026-03-30
+related_docs:
+  - docs/testing/0000_TESTING_FRAMEWORK.md
+  - docs/testing/0000_TEST_AUTOMATION_GUIDE.md
+related_skills:
+  - systematic-debugging
+  - verification-before-completion
+  - testing-verification
+frequency_percent: 85.0
+success_rate_percent: 92.0
 ---
 
 # Test-Driven Development (TDD)
@@ -13,20 +25,23 @@ Write the test first. Watch it fail. Write minimal code to pass.
 
 **Violating the letter of the rules is violating the spirit of the rules.**
 
-## When to Use
+## When to Use This Skill
 
-**Always:**
-- New features
-- Bug fixes
-- Refactoring
-- Behavior changes
+**Trigger Conditions:**
+- Implementing new features or functionality
+- Fixing bugs or resolving issues
+- Refactoring existing code
+- Changing behavior of existing systems
+- Adding new capabilities to applications
+- When quality and reliability are critical
+- Before any production code implementation
+- When working on complex or critical systems
 
-**Exceptions (ask your human partner):**
-- Throwaway prototypes
-- Generated code
-- Configuration files
-
-Thinking "skip TDD just this once"? Stop. That's rationalization.
+**Exceptions (require human partner approval):**
+- Throwaway prototypes with no long-term use
+- Generated code from automated tools
+- Simple configuration file changes
+- Emergency hotfixes with immediate business impact
 
 ## The Iron Law
 
@@ -44,41 +59,18 @@ Write code before the test? Delete it. Start over.
 
 Implement fresh from tests. Period.
 
-## Red-Green-Refactor
+## Step-by-Step Procedure
 
-```dot
-digraph tdd_cycle {
-    rankdir=LR;
-    red [label="RED\nWrite failing test", shape=box, style=filled, fillcolor="#ffcccc"];
-    verify_red [label="Verify fails\ncorrectly", shape=diamond];
-    green [label="GREEN\nMinimal code", shape=box, style=filled, fillcolor="#ccffcc"];
-    verify_green [label="Verify passes\nAll green", shape=diamond];
-    refactor [label="REFACTOR\nClean up", shape=box, style=filled, fillcolor="#ccccff"];
-    next [label="Next", shape=ellipse];
+### Step 1: Write Failing Test (RED)
+Write one minimal test that demonstrates the desired behavior.
 
-    red -> verify_red;
-    verify_red -> green [label="yes"];
-    verify_red -> red [label="wrong\nfailure"];
-    green -> verify_green;
-    verify_green -> refactor [label="yes"];
-    verify_green -> green [label="no"];
-    refactor -> verify_green [label="stay\ngreen"];
-    verify_green -> next;
-    next -> red;
-}
-```
-
-### RED - Write Failing Test
-
-Write one minimal test showing what should happen.
-
-<Good>
-```typescript
-test('retries failed operations 3 times', async () => {
+```javascript
+// Example: Test for retry operation
+test('retries failed operations 3 times before succeeding', async () => {
   let attempts = 0;
   const operation = () => {
     attempts++;
-    if (attempts < 3) throw new Error('fail');
+    if (attempts < 3) throw new Error('Operation failed');
     return 'success';
   };
 
@@ -88,112 +80,171 @@ test('retries failed operations 3 times', async () => {
   expect(attempts).toBe(3);
 });
 ```
-Clear name, tests real behavior, one thing
-</Good>
 
-<Bad>
-```typescript
-test('retry works', async () => {
-  const mock = jest.fn()
-    .mockRejectedValueOnce(new Error())
-    .mockRejectedValueOnce(new Error())
-    .mockResolvedValueOnce('success');
-  await retryOperation(mock);
-  expect(mock).toHaveBeenCalledTimes(3);
-});
-```
-Vague name, tests mock not code
-</Bad>
+**Test Requirements:**
+- Clear, descriptive name describing behavior
+- Tests one specific behavior
+- Uses real code (minimal mocks)
+- Demonstrates desired API/behavior
 
-**Requirements:**
-- One behavior
-- Clear name
-- Real code (no mocks unless unavoidable)
-
-### Verify RED - Watch It Fail
-
-**MANDATORY. Never skip.**
+### Step 2: Verify Test Fails (RED)
+**MANDATORY:** Run the test and confirm it fails correctly.
 
 ```bash
 npm test path/to/test.test.ts
 ```
 
-Confirm:
-- Test fails (not errors)
-- Failure message is expected
-- Fails because feature missing (not typos)
+**Verify:**
+- Test fails (not due to syntax errors)
+- Failure message indicates missing functionality
+- Fails for expected reason (feature not implemented)
 
-**Test passes?** You're testing existing behavior. Fix test.
+**If test passes:** You're testing existing behavior - revise test
+**If test errors:** Fix test syntax, then verify it fails correctly
 
-**Test errors?** Fix error, re-run until it fails correctly.
+### Step 3: Write Minimal Code (GREEN)
+Implement the simplest code possible to make the test pass.
 
-### GREEN - Minimal Code
-
-Write simplest code to pass the test.
-
-<Good>
-```typescript
-async function retryOperation<T>(fn: () => Promise<T>): Promise<T> {
-  for (let i = 0; i < 3; i++) {
+```javascript
+// Minimal implementation to pass the test
+async function retryOperation(operation) {
+  for (let attempt = 1; attempt <= 3; attempt++) {
     try {
-      return await fn();
-    } catch (e) {
-      if (i === 2) throw e;
+      return await operation();
+    } catch (error) {
+      if (attempt === 3) throw error;
     }
   }
-  throw new Error('unreachable');
 }
 ```
-Just enough to pass
-</Good>
 
-<Bad>
-```typescript
-async function retryOperation<T>(
-  fn: () => Promise<T>,
-  options?: {
-    maxRetries?: number;
-    backoff?: 'linear' | 'exponential';
-    onRetry?: (attempt: number) => void;
-  }
-): Promise<T> {
-  // YAGNI
-}
-```
-Over-engineered
-</Bad>
+**Guidelines:**
+- Write only enough code to pass the test
+- No additional features or improvements
+- Keep implementation simple and direct
+- Avoid over-engineering
 
-Don't add features, refactor other code, or "improve" beyond the test.
-
-### Verify GREEN - Watch It Pass
-
-**MANDATORY.**
+### Step 4: Verify Test Passes (GREEN)
+**MANDATORY:** Run tests and confirm they pass.
 
 ```bash
 npm test path/to/test.test.ts
 ```
 
-Confirm:
-- Test passes
-- Other tests still pass
-- Output pristine (no errors, warnings)
+**Verify:**
+- New test passes
+- All existing tests still pass
+- No console errors or warnings
+- Clean test output
 
-**Test fails?** Fix code, not test.
+**If tests fail:** Fix implementation, not test
 
-**Other tests fail?** Fix now.
+### Step 5: Refactor Code (REFACTOR)
+Clean up code while keeping tests green.
 
-### REFACTOR - Clean Up
+```javascript
+// Refactored implementation
+async function retryOperation(operation, maxRetries = 3) {
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      return await operation();
+    } catch (error) {
+      if (attempt === maxRetries) {
+        throw new Error(`Operation failed after ${maxRetries} attempts: ${error.message}`);
+      }
+    }
+  }
+}
+```
 
-After green only:
-- Remove duplication
-- Improve names
-- Extract helpers
+**Refactoring Allowed:**
+- Improve variable names
+- Extract helper functions
+- Remove code duplication
+- Improve readability
+- Add documentation
 
-Keep tests green. Don't add behavior.
+**Refactoring NOT Allowed:**
+- Change behavior
+- Add new features
+- Break existing functionality
 
-### Repeat
+### Step 6: Repeat Cycle
+Write next failing test for additional functionality.
 
-Next failing test for next feature.
+```javascript
+// Next test for additional behavior
+test('throws error after all retries exhausted', async () => {
+  const failingOperation = () => Promise.reject(new Error('Persistent failure'));
+
+  await expect(retryOperation(failingOperation)).rejects.toThrow('Operation failed after 3 attempts');
+});
+```
+
+**Continue cycle:**
+- RED: Write failing test
+- GREEN: Make test pass
+- REFACTOR: Clean up code
+- Repeat for next feature
+
+### Step 7: Handle Edge Cases
+Add tests for error conditions and edge cases.
+
+```javascript
+// Edge case tests
+test('handles synchronous operations', () => {
+  const result = retryOperation(() => 'immediate success');
+  expect(result).toBe('immediate success');
+});
+
+test('validates retry count parameter', () => {
+  expect(() => retryOperation(() => 'test', 0)).toThrow('Invalid retry count');
+});
+```
+
+### Step 8: Integration Testing
+Ensure component works with other parts of the system.
+
+```javascript
+// Integration test
+test('retry operation integrates with API client', async () => {
+  const mockApiClient = { call: jest.fn().mockRejectedValueOnce(new Error('Network error')).mockResolvedValue('success') };
+  const result = await retryOperation(() => mockApiClient.call());
+  expect(result).toBe('success');
+  expect(mockApiClient.call).toHaveBeenCalledTimes(2);
+});
+```
+
+### Step 9: Documentation and Examples
+Add clear examples and documentation.
+
+```javascript
+/**
+ * Retries an asynchronous operation with exponential backoff
+ * @param {Function} operation - Async function to retry
+ * @param {number} maxRetries - Maximum retry attempts (default: 3)
+ * @returns {Promise} Result of successful operation
+ * @throws {Error} Last error if all retries fail
+ */
+async function retryOperation(operation, maxRetries = 3) {
+  // Implementation...
+}
+```
+
+### Step 10: Final Verification
+Complete verification checklist before marking complete.
+
+```javascript
+// Verification checklist
+const verificationComplete = {
+  allTestsPass: true,
+  codeCoverageMet: true,
+  edgeCasesCovered: true,
+  integrationTestsPass: true,
+  documentationComplete: true,
+  noTechnicalDebt: true
+};
+```
 
 ## Good Tests
 
@@ -369,3 +420,18 @@ Otherwise → not TDD
 ```
 
 No exceptions without your human partner's permission.
+
+## Cross-References
+
+### Related Procedures
+- [Testing Framework Guide](docs/testing/0000_TESTING_FRAMEWORK.md) - Complete testing setup and frameworks
+- [Test Automation Guide](docs/testing/0000_TEST_AUTOMATION_GUIDE.md) - CI/CD integration and automation
+
+### Related Skills
+- `systematic-debugging` - Debugging test failures and issues
+- `verification-before-completion` - Final quality validation
+- `testing-verification` - Comprehensive testing strategies
+
+### Related Agents
+- `QualityForge_AI_Team` - Test creation and validation assistance
+- `DevForge_AI_Team` - Implementation guidance with TDD

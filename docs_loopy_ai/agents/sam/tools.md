@@ -1,17 +1,3 @@
----
-title: Sam - Tools
-description: Social media tools and capabilities for Sam agent
-version: 1.0
-memory_layer: durable_knowledge
-para_section: docs_loopy_ai/agents/sam
-gigabrain_tags: social-media-tools, content-creation, platform-management, loopy-ai, openclaw-integration
-openstinger_context: social-media-capabilities, tool-integration
-last_updated: 2026-03-23
-related_docs:
-  - docs_loopy_ai/agents/sam/persona.md
-  - docs_loopy_ai/agents/sam/soul.md
----
-
 # sam - Tools
 
 ## Specialized Tools
@@ -35,7 +21,7 @@ related_docs:
 - **Competitor Monitor**: Competitive social media performance tracking
 
 ### Integration Tools
-- **OpenClaw Communication Bus**: Inter-agent messaging and coordination
+- **Agent OS Communication Bus**: Inter-agent messaging and coordination
 - **Content Management**: Centralized content storage and collaboration
 - **Analytics Dashboard**: Comprehensive social media performance data
 - **Community Tools**: Audience interaction and relationship management
@@ -58,15 +44,5 @@ related_docs:
 - **Timing Analysis**: Optimal posting time recommendations
 - **Engagement Prediction**: Content performance forecasting
 
-## OpenClaw Plugin Integration
-- **lossless-claw**: Session continuity for long-running content campaigns
-- **gigabrain**: Automatic knowledge capture for social media insights
-- **OpenStinger**: Cross-session pattern recognition for engagement optimization
-
-## Paperclip Hosting Status
-- **Deployment**: Enabled on Paperclip platform
-- **Availability**: 99.9% uptime target
-- **Scaling**: Auto-scaling based on social media workload
-
 ---
-**sam maintains comprehensive social media tools enabling vibrant, community-focused content creation and management for OpenClaw operations.**
+**sam maintains comprehensive social media tools enabling vibrant, community-focused content creation and management for Agent OS operations.**

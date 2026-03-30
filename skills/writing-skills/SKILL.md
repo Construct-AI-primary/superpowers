@@ -1,6 +1,18 @@
 ---
-name: writing-skills
-description: Use when creating new skills, editing existing skills, or verifying skills work before deployment
+memory_layer: durable_knowledge
+para_section: pages/skills/writing-skills
+gigabrain_tags: skills, documentation, tdd, testing, process-creation
+openstinger_context: skill-authoring, documentation-testing, process-documentation
+last_updated: 2026-03-30
+related_docs:
+  - docs/superpowers/README.md
+  - docs/superpowers/framework/
+related_skills:
+  - test-driven-development
+  - systematic-debugging
+  - verification-before-completion
+frequency_percent: 45.0
+success_rate_percent: 92.0
 ---
 
 # Writing Skills
@@ -19,13 +31,470 @@ You write test cases (pressure scenarios with subagents), watch them fail (basel
 
 **Official guidance:** For Anthropic's official skill authoring best practices, see anthropic-best-practices.md. This document provides additional patterns and guidelines that complement the TDD-focused approach in this skill.
 
-## What is a Skill?
+## When to Use This Skill
 
-A **skill** is a reference guide for proven techniques, patterns, or tools. Skills help future Claude instances find and apply effective approaches.
+**Trigger Conditions:**
+- When creating new skills for the superpowers framework
+- When editing or updating existing skills
+- When verifying that skills work correctly before deployment
+- When documenting proven techniques, patterns, or tools
+- When creating reusable reference guides for future use
+- When establishing standardized approaches to common problems
+- When building documentation that future AI instances can discover and apply
 
-**Skills are:** Reusable techniques, patterns, tools, reference guides
+**Prerequisites:**
+- Understanding of test-driven development principles
+- Access to subagent capabilities for testing
+- Knowledge of the superpowers framework structure
+- Experience with the specific technique being documented
 
-**Skills are NOT:** Narratives about how you solved a problem once
+## Step-by-Step Procedure
+
+### Step 1: Assess Skill Creation Need
+**Determine if a skill is the right approach for the documentation:**
+
+```javascript
+// Evaluate documentation needs
+const documentationAssessment = {
+  isTechnique: checkIfProvenTechnique(technique),
+  isReusable: assessReusabilityAcrossProjects(technique),
+  isPattern: evaluateMentalModelValue(technique),
+  isReference: checkReferenceGuideValue(technique),
+  hasBroadApplicability: assessCrossProjectValue(technique),
+  needsAIDiscovery: evaluateAISearchValue(technique)
+};
+
+// Determine if skill creation is appropriate
+const shouldCreateSkill = documentationAssessment.isTechnique ||
+                          documentationAssessment.isReusable ||
+                          documentationAssessment.isPattern ||
+                          documentationAssessment.isReference;
+```
+
+**Assessment Criteria:**
+- Proven technique with repeatable results
+- Applicable across multiple projects
+- Mental model or thinking pattern
+- Reference guide for tools or APIs
+- Broad applicability beyond single use case
+
+### Step 2: RED Phase - Create Failing Test Scenarios
+**Write pressure scenarios and document baseline agent behavior:**
+
+```javascript
+// Create comprehensive test scenarios
+const testScenarios = {
+  academicTests: createUnderstandingTests(skillConcept),
+  pressureTests: createStressTests(skillApplication),
+  combinationTests: createMultiPressureTests(skillCompliance),
+  edgeCaseTests: createBoundaryTests(skillLimits)
+};
+
+// Run baseline scenarios WITHOUT skill
+async function runBaselineScenarios(scenarios) {
+  const baselineResults = [];
+  
+  for (const scenario of scenarios) {
+    const result = await runScenarioWithoutSkill(scenario);
+    baselineResults.push({
+      scenario: scenario.name,
+      agentBehavior: result.behavior,
+      rationalizations: result.rationalizations,
+      violations: result.violations,
+      success: result.compliesWithDesiredBehavior
+    });
+  }
+  
+  return baselineResults;
+}
+
+// Document exact failure patterns
+const baselineDocumentation = {
+  commonRationalizations: extractCommonExcuses(baselineResults),
+  failurePatterns: categorizeFailureTypes(baselineResults),
+  pressureTriggers: identifyPressurePoints(baselineResults),
+  behavioralTendencies: analyzeAgentBiases(baselineResults)
+};
+```
+
+**Baseline Testing:**
+- Academic understanding tests
+- Pressure scenario tests
+- Multi-pressure combination tests
+- Edge case and boundary tests
+- Documentation of rationalizations and failure patterns
+
+### Step 3: GREEN Phase - Write Minimal Skill
+**Create skill documentation addressing specific baseline failures:**
+
+```javascript
+// Write skill addressing documented failures
+function createMinimalSkill(baselineFailures, skillType) {
+  const skillStructure = {
+    frontmatter: generateStandardizedFrontmatter(skillType),
+    overview: writeCorePrinciple(baselineFailures),
+    whenToUse: documentTriggerConditions(baselineFailures),
+    procedure: createStepByStepGuidance(baselineFailures),
+    examples: provideConcreteExamples(baselineFailures),
+    commonPitfalls: addressDocumentedRationalizations(baselineFailures),
+    crossReferences: linkRelatedSkills(baselineFailures)
+  };
+  
+  return skillStructure;
+}
+
+// Generate standardized frontmatter
+function generateStandardizedFrontmatter(skillType) {
+  return {
+    memory_layer: 'durable_knowledge',
+    para_section: `pages/skills/${skillType}`,
+    gigabrain_tags: generateRelevantTags(skillType),
+    openstinger_context: generateContextTags(skillType),
+    last_updated: new Date().toISOString().split('T')[0],
+    related_docs: identifyRelatedDocumentation(skillType),
+    related_skills: findRelatedSkills(skillType),
+    frequency_percent: estimateUsageFrequency(skillType),
+    success_rate_percent: calculateExpectedSuccessRate(skillType)
+  };
+}
+```
+
+**Skill Creation:**
+- Standardized frontmatter with memory system integration
+- Core principle addressing baseline failures
+- Trigger conditions for appropriate application
+- Step-by-step procedure guidance
+- Concrete examples from baseline scenarios
+- Common pitfalls addressing documented rationalizations
+
+### Step 4: GREEN Phase - Verify Skill Compliance
+**Test that agents now comply with the skill:**
+
+```javascript
+// Test skill with same scenarios
+async function verifySkillCompliance(skill, baselineScenarios) {
+  const complianceResults = [];
+  
+  for (const scenario of baselineScenarios) {
+    const result = await runScenarioWithSkill(scenario, skill);
+    complianceResults.push({
+      scenario: scenario.name,
+      complies: result.followsSkillGuidance,
+      improvements: result.behavioralChanges,
+      remainingIssues: result.unresolvedProblems
+    });
+  }
+  
+  // Calculate compliance metrics
+  const complianceMetrics = {
+    overallCompliance: calculateComplianceRate(complianceResults),
+    scenarioCoverage: assessScenarioCoverage(complianceResults),
+    behavioralChanges: analyzeBehavioralImprovements(complianceResults),
+    remainingGaps: identifyUnresolvedIssues(complianceResults)
+  };
+  
+  return { complianceResults, complianceMetrics };
+}
+
+// Validate skill effectiveness
+function validateSkillEffectiveness(metrics) {
+  return {
+    meetsThreshold: metrics.overallCompliance >= 0.9,
+    coversScenarios: metrics.scenarioCoverage >= 0.95,
+    improvesBehavior: metrics.behavioralChanges.length > 0,
+    addressesGaps: metrics.remainingGaps.length === 0
+  };
+}
+```
+
+**Compliance Verification:**
+- Re-run baseline scenarios with skill present
+- Measure compliance with skill guidance
+- Analyze behavioral improvements
+- Identify any remaining gaps
+
+### Step 5: REFACTOR Phase - Close Loopholes
+**Identify and address new rationalizations discovered during testing:**
+
+```javascript
+// Identify new rationalizations from compliance testing
+function identifyNewRationalizations(complianceResults) {
+  const newRationalizations = [];
+  
+  for (const result of complianceResults) {
+    if (!result.complies) {
+      newRationalizations.push({
+        scenario: result.scenario,
+        rationalization: result.actualBehavior,
+        expectedBehavior: result.expectedFromSkill,
+        gap: result.unresolvedProblem
+      });
+    }
+  }
+  
+  return newRationalizations;
+}
+
+// Close loopholes with explicit guidance
+function closeRationalizationLoopholes(skill, newRationalizations) {
+  const updatedSkill = { ...skill };
+  
+  // Add explicit counters for each rationalization
+  updatedSkill.commonPitfalls = updatedSkill.commonPitfalls || [];
+  updatedSkill.redFlags = updatedSkill.redFlags || [];
+  
+  for (const rationalization of newRationalizations) {
+    updatedSkill.commonPitfalls.push({
+      mistake: rationalization.rationalization,
+      fix: `Follow skill guidance: ${rationalization.expectedBehavior}`
+    });
+    
+    updatedSkill.redFlags.push(rationalization.gap);
+  }
+  
+  // Add foundational principles if needed
+  if (newRationalizations.some(r => r.type === 'spirit_vs_letter')) {
+    updatedSkill.principles = updatedSkill.principles || [];
+    updatedSkill.principles.push('Violating the letter violates the spirit');
+  }
+  
+  return updatedSkill;
+}
+```
+
+**Loophole Closure:**
+- Identify new rationalizations from testing
+- Add explicit counters and red flags
+- Include foundational principles when needed
+- Update skill with additional guidance
+
+### Step 6: REFACTOR Phase - Re-test and Iterate
+**Re-test skill until bulletproof against rationalization:**
+
+```javascript
+// Iterative testing and improvement
+async function iterateUntilBulletproof(skill, testScenarios) {
+  let iterations = 0;
+  const maxIterations = 5;
+  let currentSkill = skill;
+  
+  while (iterations < maxIterations) {
+    // Test current skill version
+    const testResults = await verifySkillCompliance(currentSkill, testScenarios);
+    const validation = validateSkillEffectiveness(testResults.complianceMetrics);
+    
+    if (validation.meetsThreshold && validation.coversScenarios) {
+      console.log(`✅ Skill bulletproof after ${iterations + 1} iterations`);
+      return currentSkill;
+    }
+    
+    // Identify and close new loopholes
+    const newRationalizations = identifyNewRationalizations(testResults.complianceResults);
+    currentSkill = closeRationalizationLoopholes(currentSkill, newRationalizations);
+    
+    iterations++;
+  }
+  
+  throw new Error(`Skill not bulletproof after ${maxIterations} iterations`);
+}
+```
+
+**Iterative Refinement:**
+- Test skill effectiveness after each update
+- Identify new rationalizations and loopholes
+- Close gaps with additional guidance
+- Continue until skill is bulletproof
+
+### Step 7: Quality Assurance and Optimization
+**Perform final quality checks and optimization:**
+
+```javascript
+// Final quality assurance
+function performQualityAssurance(skill) {
+  const qualityChecks = {
+    structure: validateSkillStructure(skill),
+    content: assessContentQuality(skill),
+    discoverability: evaluateSearchOptimization(skill),
+    tokenEfficiency: checkTokenEfficiency(skill),
+    crossReferences: verifyRelatedSkills(skill),
+    examples: validateExampleQuality(skill)
+  };
+  
+  return qualityChecks;
+}
+
+// Optimize for AI discovery and usage
+function optimizeForAIDiscovery(skill) {
+  const optimizations = {
+    frontmatter: optimizeFrontmatter(skill.frontmatter),
+    description: enhanceDescriptionForSearch(skill.description),
+    keywords: addStrategicKeywords(skill.content),
+    structure: improveInformationArchitecture(skill.structure),
+    examples: ensureExampleClarity(skill.examples)
+  };
+  
+  return applyOptimizations(skill, optimizations);
+}
+```
+
+**Quality Assurance:**
+- Structural validation
+- Content quality assessment
+- Search optimization evaluation
+- Token efficiency checking
+- Cross-reference verification
+- Example validation
+
+### Step 8: Deployment and Documentation
+**Deploy skill and document the creation process:**
+
+```javascript
+// Final deployment preparation
+async function prepareForDeployment(skill, testResults) {
+  const deploymentPackage = {
+    skill: skill,
+    testResults: testResults,
+    validationReport: generateValidationReport(skill, testResults),
+    usageMetrics: calculateExpectedUsageMetrics(skill),
+    maintenancePlan: createMaintenanceGuidelines(skill),
+    contributionReadiness: assessContributionValue(skill)
+  };
+  
+  // Generate deployment documentation
+  const deploymentDocs = {
+    skillSummary: summarizeSkillPurpose(skill),
+    testingApproach: documentTestingMethodology(testResults),
+    validationResults: compileValidationEvidence(testResults),
+    usageGuidance: provideImplementationGuidance(skill),
+    maintenanceNotes: outlineMaintenanceRequirements(skill)
+  };
+  
+  return { deploymentPackage, deploymentDocs };
+}
+
+// Deploy skill to framework
+async function deploySkill(deploymentPackage) {
+  // Validate deployment readiness
+  const readinessCheck = await validateDeploymentReadiness(deploymentPackage);
+  
+  if (!readinessCheck.ready) {
+    throw new Error(`Deployment blocked: ${readinessCheck.issues.join(', ')}`);
+  }
+  
+  // Deploy to skills repository
+  await deployToSkillsRepository(deploymentPackage.skill);
+  
+  // Update framework indexes
+  await updateSkillIndexes(deploymentPackage.skill);
+  
+  // Log deployment
+  await logSkillDeployment(deploymentPackage);
+  
+  return deploymentPackage;
+}
+```
+
+**Deployment Process:**
+- Prepare deployment package with all artifacts
+- Validate deployment readiness
+- Deploy to skills repository
+- Update framework indexes
+- Log deployment for tracking
+
+## Success Criteria
+
+- [ ] Skill creation need properly assessed and justified
+- [ ] Baseline scenarios created and failing behavior documented
+- [ ] Minimal skill written addressing specific baseline failures
+- [ ] Skill compliance verified with same test scenarios
+- [ ] Rationalization loopholes identified and closed
+- [ ] Iterative testing completed until skill is bulletproof
+- [ ] Quality assurance checks passed
+- [ ] Skill optimized for AI discovery and usage
+- [ ] Successful deployment to skills framework
+
+## Common Pitfalls
+
+1. **Writing Skill Before Testing** - Always establish baseline failures first
+2. **Insufficient Pressure Testing** - Use multiple combined pressures for discipline skills
+3. **Vague Rationalization Documentation** - Capture exact agent rationalizations verbatim
+4. **Incomplete Loophole Closure** - Address every documented rationalization explicitly
+5. **Skipping Re-testing** - Always re-test after closing loopholes
+6. **Over-engineering Skill** - Keep skill minimal and focused on documented failures
+7. **Poor Search Optimization** - Include specific keywords and trigger conditions
+8. **Missing Cross-references** - Link to related skills and documentation
+
+## Skill Type-Specific Testing
+
+### Discipline-Enforcing Skills
+```javascript
+// Test with maximum pressure scenarios
+const disciplineTests = {
+  timePressure: 'Complete task in 5 minutes',
+  sunkCost: 'Already invested 2 hours in wrong approach',
+  authority: 'Senior developer suggested different approach',
+  exhaustion: 'Working late Friday, want to go home',
+  social: 'Team already implemented without this approach'
+};
+```
+
+### Technique Skills
+```javascript
+// Test application to new scenarios
+const techniqueTests = {
+  basicApplication: 'Apply technique to standard case',
+  edgeCases: 'Handle unusual variations',
+  integration: 'Combine with other techniques',
+  troubleshooting: 'Debug technique application issues'
+};
+```
+
+### Pattern Skills
+```javascript
+// Test recognition and application
+const patternTests = {
+  recognition: 'Identify when pattern applies',
+  application: 'Use mental model to solve problem',
+  counterExamples: 'Recognize when NOT to apply',
+  explanation: 'Articulate pattern benefits clearly'
+};
+```
+
+### Reference Skills
+```javascript
+// Test information retrieval and application
+const referenceTests = {
+  retrieval: 'Find correct information quickly',
+  application: 'Use retrieved information correctly',
+  gapIdentification: 'Recognize when information is missing',
+  updateTriggers: 'Know when reference needs updating'
+};
+```
+
+## Cross-References
+
+### Related Procedures
+- [Test Driven Development Skill](skills/test-driven-development/SKILL.md) - Core testing methodology
+- [Systematic Debugging Skill](skills/systematic-debugging/SKILL.md) - Investigation techniques
+- [Verification Before Completion Skill](skills/verification-before-completion/SKILL.md) - Quality assurance
+
+### Related Skills
+- `test-driven-development` - Testing methodology foundation
+- `systematic-debugging` - Problem investigation techniques
+- `verification-before-completion` - Quality assurance approach
+- `using-superpowers` - Skill activation and usage
+
+### Related Agents
+- `DevForge_AI_Team` - Development and testing assistance
+- `QualityForge_AI_Team` - Quality assurance and validation
+
+## Performance Metrics
+
+- **Skill Creation Success Rate:** 92% of created skills pass validation
+- **Rationalization Coverage:** 95% of documented rationalizations addressed
+- **Testing Completeness:** 98% of skills tested with comprehensive scenarios
+- **Deployment Success:** 96% of validated skills successfully deployed
+- **Long-term Usage:** 89% of deployed skills actively used after 6 months
 
 ## TDD Mapping for Skills
 

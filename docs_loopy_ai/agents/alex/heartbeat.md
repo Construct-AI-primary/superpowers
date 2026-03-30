@@ -1,17 +1,3 @@
----
-title: Alex - Heartbeat
-description: Operational status and health metrics for Alex agent
-version: 1.0
-memory_layer: session_context
-para_section: docs_loopy_ai/agents/alex
-gigabrain_tags: agent-status, health-metrics, operational-data, loopy-ai, openclaw-integration
-openstinger_context: agent-monitoring, performance-tracking
-last_updated: 2026-03-23
-related_docs:
-  - docs_loopy_ai/agents/alex/persona.md
-  - docs_loopy_ai/agents/agent-registry.json
----
-
 # alex - Heartbeat
 
 ## Operational Status
@@ -35,14 +21,3 @@ related_docs:
 - **Efficiency**: ↑ 5.1%
 - **Accuracy**: Stable at 98%
 - **Timeliness**: ↑ 3.8%
-
-## OpenClaw Plugin Status
-- **lossless-claw**: ACTIVE - Session continuity enabled
-- **gigabrain**: ACTIVE - Knowledge capture enabled
-- **OpenStinger**: ACTIVE - Cross-session recall enabled
-
-## Paperclip Hosting Metrics
-- **Platform**: Paperclip Cloud
-- **Status**: DEPLOYED
-- **Uptime**: 99.9%
-- **Last Deployment**: 2026-03-23

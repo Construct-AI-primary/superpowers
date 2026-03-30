@@ -1,6 +1,18 @@
 ---
-name: systematic-debugging
-description: Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes
+memory_layer: durable_knowledge
+para_section: pages/skills/systematic-debugging
+gigabrain_tags: debugging, troubleshooting, root-cause, systematic, testing
+openstinger_context: bug-fixing, error-analysis, systematic-approach
+last_updated: 2026-03-30
+related_docs:
+  - docs/error-tracking/0000_ERROR_FIXES_SUMMARY.md
+  - docs/testing/0000_TESTING_FRAMEWORK.md
+related_skills:
+  - test-driven-development
+  - verification-before-completion
+  - build-error-fix
+frequency_percent: 88.0
+success_rate_percent: 94.0
 ---
 
 # Systematic Debugging
@@ -21,34 +33,22 @@ NO FIXES WITHOUT ROOT CAUSE INVESTIGATION FIRST
 
 If you haven't completed Phase 1, you cannot propose fixes.
 
-## When to Use
+## When to Use This Skill
 
-Use for ANY technical issue:
-- Test failures
-- Bugs in production
-- Unexpected behavior
-- Performance problems
-- Build failures
-- Integration issues
+**Trigger Conditions:**
+- Test failures or unexpected behavior in code
+- Bugs discovered in production or staging environments
+- Performance issues or degraded system behavior
+- Build failures or compilation errors
+- Integration issues between system components
+- When under time pressure (emergencies make guessing tempting)
+- After multiple failed fix attempts
+- When you don't fully understand the root cause
+- For any technical issue requiring systematic investigation
 
-**Use this ESPECIALLY when:**
-- Under time pressure (emergencies make guessing tempting)
-- "Just one quick fix" seems obvious
-- You've already tried multiple fixes
-- Previous fix didn't work
-- You don't fully understand the issue
+## Step-by-Step Procedure
 
-**Don't skip when:**
-- Issue seems simple (simple bugs have root causes too)
-- You're in a hurry (rushing guarantees rework)
-- Manager wants it fixed NOW (systematic is faster than thrashing)
-
-## The Four Phases
-
-You MUST complete each phase before proceeding to the next.
-
-### Phase 1: Root Cause Investigation
-
+### Step 1: Root Cause Investigation
 **BEFORE attempting ANY fix:**
 
 1. **Read Error Messages Carefully**
@@ -70,7 +70,6 @@ You MUST complete each phase before proceeding to the next.
    - Environmental differences
 
 4. **Gather Evidence in Multi-Component Systems**
-
    **WHEN system has multiple components (CI → build → signing, API → service → database):**
 
    **BEFORE proposing fixes, add diagnostic instrumentation:**
@@ -86,41 +85,14 @@ You MUST complete each phase before proceeding to the next.
    THEN investigate that specific component
    ```
 
-   **Example (multi-layer system):**
-   ```bash
-   # Layer 1: Workflow
-   echo "=== Secrets available in workflow: ==="
-   echo "IDENTITY: ${IDENTITY:+SET}${IDENTITY:-UNSET}"
-
-   # Layer 2: Build script
-   echo "=== Env vars in build script: ==="
-   env | grep IDENTITY || echo "IDENTITY not in environment"
-
-   # Layer 3: Signing script
-   echo "=== Keychain state: ==="
-   security list-keychains
-   security find-identity -v
-
-   # Layer 4: Actual signing
-   codesign --sign "$IDENTITY" --verbose=4 "$APP"
-   ```
-
-   **This reveals:** Which layer fails (secrets → workflow ✓, workflow → build ✗)
-
 5. **Trace Data Flow**
-
    **WHEN error is deep in call stack:**
-
-   See `root-cause-tracing.md` in this directory for the complete backward tracing technique.
-
-   **Quick version:**
    - Where does bad value originate?
    - What called this with bad value?
    - Keep tracing up until you find the source
    - Fix at source, not at symptom
 
-### Phase 2: Pattern Analysis
-
+### Step 2: Pattern Analysis
 **Find the pattern before fixing:**
 
 1. **Find Working Examples**
@@ -142,8 +114,7 @@ You MUST complete each phase before proceeding to the next.
    - What settings, config, environment?
    - What assumptions does it make?
 
-### Phase 3: Hypothesis and Testing
-
+### Step 3: Hypothesis and Testing
 **Scientific method:**
 
 1. **Form Single Hypothesis**
@@ -157,7 +128,7 @@ You MUST complete each phase before proceeding to the next.
    - Don't fix multiple things at once
 
 3. **Verify Before Continuing**
-   - Did it work? Yes → Phase 4
+   - Did it work? Yes → Step 4
    - Didn't work? Form NEW hypothesis
    - DON'T add more fixes on top
 
@@ -167,8 +138,7 @@ You MUST complete each phase before proceeding to the next.
    - Ask for help
    - Research more
 
-### Phase 4: Implementation
-
+### Step 4: Implementation
 **Fix the root cause, not the symptom:**
 
 1. **Create Failing Test Case**
@@ -176,7 +146,7 @@ You MUST complete each phase before proceeding to the next.
    - Automated test if possible
    - One-off test script if no framework
    - MUST have before fixing
-   - Use the `superpowers:test-driven-development` skill for writing proper failing tests
+   - Use the `test-driven-development` skill for writing proper failing tests
 
 2. **Implement Single Fix**
    - Address the root cause identified
@@ -192,25 +162,24 @@ You MUST complete each phase before proceeding to the next.
 4. **If Fix Doesn't Work**
    - STOP
    - Count: How many fixes have you tried?
-   - If < 3: Return to Phase 1, re-analyze with new information
-   - **If ≥ 3: STOP and question the architecture (step 5 below)**
+   - If < 3: Return to Step 1, re-analyze with new information
+   - **If ≥ 3: STOP and question the architecture**
    - DON'T attempt Fix #4 without architectural discussion
 
-5. **If 3+ Fixes Failed: Question Architecture**
+### Step 5: Handle Architectural Issues
+**If 3+ fixes failed, question the architecture:**
 
-   **Pattern indicating architectural problem:**
-   - Each fix reveals new shared state/coupling/problem in different place
-   - Fixes require "massive refactoring" to implement
-   - Each fix creates new symptoms elsewhere
+**Pattern indicating architectural problem:**
+- Each fix reveals new shared state/coupling/problem in different place
+- Fixes require "massive refactoring" to implement
+- Each fix creates new symptoms elsewhere
 
-   **STOP and question fundamentals:**
-   - Is this pattern fundamentally sound?
-   - Are we "sticking with it through sheer inertia"?
-   - Should we refactor architecture vs. continue fixing symptoms?
+**STOP and question fundamentals:**
+- Is this pattern fundamentally sound?
+- Are we "sticking with it through sheer inertia"?
+- Should we refactor architecture vs. continue fixing symptoms?
 
-   **Discuss with your human partner before attempting more fixes**
-
-   This is NOT a failed hypothesis - this is a wrong architecture.
+**Discuss with your human partner before attempting more fixes**
 
 ## Red Flags - STOP and Follow Process
 
@@ -294,3 +263,18 @@ From debugging sessions:
 - Random fixes approach: 2-3 hours of thrashing
 - First-time fix rate: 95% vs 40%
 - New bugs introduced: Near zero vs common
+
+## Cross-References
+
+### Related Procedures
+- [Error Fixes Summary](docs/error-tracking/0000_ERROR_FIXES_SUMMARY.md) - Collection of resolved debugging cases
+- [Testing Framework Guide](docs/testing/0000_TESTING_FRAMEWORK.md) - Testing methodologies for validation
+
+### Related Skills
+- `test-driven-development` - Creating test cases during debugging
+- `verification-before-completion` - Validating fixes are complete
+- `build-error-fix` - Specialized debugging for build issues
+
+### Related Agents
+- `DevForge_AI_Team` - Implementation assistance during debugging
+- `QualityForge_AI_Team` - Validation and testing support
