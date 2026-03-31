@@ -13,6 +13,11 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.static('docs')); // Serve documentation
 
+// Handle favicon requests
+app.get('/favicon.ico', (req, res) => {
+  res.status(204).end(); // No content - browsers handle this gracefully
+});
+
 // Health check endpoint
 app.get('/health', (req, res) => {
   res.json({
