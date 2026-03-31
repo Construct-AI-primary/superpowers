@@ -1,0 +1,251 @@
+{
+  "company": "promptforge-ai",
+  "template": "enterprise",
+  "total_agents": 28,
+  "disciplines": 6,
+  "agents": [
+    {
+      "id": "architecture_1",
+      "name": "Sage",
+      "type": "architecture",
+      "company": "promptforge-ai",
+      "capabilities": ["prompt_architecture", "quality_assurance", "team_leadership"],
+      "memory_profile": "enterprise",
+      "status": "initialized"
+    },
+    {
+      "id": "architecture_2",
+      "name": "Blueprint",
+      "type": "architecture",
+      "company": "promptforge-ai",
+      "capabilities": ["template_design", "architectural_patterns"],
+      "memory_profile": "enterprise",
+      "status": "initialized"
+    },
+    {
+      "id": "architecture_3",
+      "name": "Cascade",
+      "type": "architecture",
+      "company": "promptforge-ai",
+      "capabilities": ["multi_agent_workflow", "agent_coordination"],
+      "memory_profile": "enterprise",
+      "status": "initialized"
+    },
+    {
+      "id": "architecture_4",
+      "name": "FlowDesigner",
+      "type": "architecture",
+      "company": "promptforge-ai",
+      "capabilities": ["handoff_protocols", "orchestration_logic"],
+      "memory_profile": "enterprise",
+      "status": "initialized"
+    },
+    {
+      "id": "architecture_5",
+      "name": "Harmonic",
+      "type": "architecture",
+      "company": "promptforge-ai",
+      "capabilities": ["orchestration_strategy", "multi_agent_coordination"],
+      "memory_profile": "enterprise",
+      "status": "initialized"
+    },
+    {
+      "id": "architecture_6",
+      "name": "StateMaster",
+      "type": "architecture",
+      "company": "promptforge-ai",
+      "capabilities": ["state_management", "context_preservation"],
+      "memory_profile": "enterprise",
+      "status": "initialized"
+    },
+    {
+      "id": "testing_1",
+      "name": "Probe",
+      "type": "testing",
+      "company": "promptforge-ai",
+      "capabilities": ["prompt_testing", "validation_frameworks"],
+      "memory_profile": "enterprise",
+      "status": "initialized"
+    },
+    {
+      "id": "testing_2",
+      "name": "Validator",
+      "type": "testing",
+      "company": "promptforge-ai",
+      "capabilities": ["syntax_validation", "logic_verification"],
+      "memory_profile": "enterprise",
+      "status": "initialized"
+    },
+    {
+      "id": "testing_3",
+      "name": "SafetyCheck",
+      "type": "testing",
+      "company": "promptforge-ai",
+      "capabilities": ["ethical_ai_testing", "bias_detection"],
+      "memory_profile": "enterprise",
+      "status": "initialized"
+    },
+    {
+      "id": "testing_4",
+      "name": "Simulator",
+      "type": "testing",
+      "company": "promptforge-ai",
+      "capabilities": ["workflow_simulation", "dry_run_testing"],
+      "memory_profile": "enterprise",
+      "status": "initialized"
+    },
+    {
+      "id": "testing_5",
+      "name": "LoadTester",
+      "type": "testing",
+      "company": "promptforge-ai",
+      "capabilities": ["performance_testing", "scalability_assessment"],
+      "memory_profile": "enterprise",
+      "status": "initialized"
+    },
+    {
+      "id": "research_1",
+      "name": "Experimenter",
+      "type": "research",
+      "company": "promptforge-ai",
+      "capabilities": ["experimental_design", "hypothesis_testing"],
+      "memory_profile": "enterprise",
+      "status": "initialized"
+    },
+    {
+      "id": "research_2",
+      "name": "Explorer",
+      "type": "research",
+      "company": "promptforge-ai",
+      "capabilities": ["technique_exploration", "methodology_development"],
+      "memory_profile": "enterprise",
+      "status": "initialized"
+    },
+    {
+      "id": "research_3",
+      "name": "Scholar",
+      "type": "research",
+      "company": "promptforge-ai",
+      "capabilities": ["academic_research", "best_practice_analysis"],
+      "memory_profile": "enterprise",
+      "status": "initialized"
+    },
+    {
+      "id": "research_4",
+      "name": "Enhancer",
+      "type": "research",
+      "company": "promptforge-ai",
+      "capabilities": ["advanced_techniques", "innovation_development"],
+      "memory_profile": "enterprise",
+      "status": "initialized"
+    },
+    {
+      "id": "research_5",
+      "name": "Specialist",
+      "type": "research",
+      "company": "promptforge-ai",
+      "capabilities": ["domain_adaptation", "specialization_frameworks"],
+      "memory_profile": "enterprise",
+      "status": "initialized"
+    },
+    {
+      "id": "ethics_1",
+      "name": "Integrity",
+      "type": "ethics",
+      "company": "promptforge-ai",
+      "capabilities": ["ethical_ai_framework", "safety_compliance"],
+      "memory_profile": "enterprise",
+      "status": "initialized"
+    },
+    {
+      "id": "ethics_2",
+      "name": "Compliance",
+      "type": "ethics",
+      "company": "promptforge-ai",
+      "capabilities": ["regulatory_compliance", "standards_adherence"],
+      "memory_profile": "enterprise",
+      "status": "initialized"
+    },
+    {
+      "id": "ethics_3",
+      "name": "Predictor",
+      "type": "ethics",
+      "company": "promptforge-ai",
+      "capabilities": ["risk_assessment", "outcome_prediction"],
+      "memory_profile": "enterprise",
+      "status": "initialized"
+    },
+    {
+      "id": "ethics_4",
+      "name": "Refiner",
+      "type": "ethics",
+      "company": "promptforge-ai",
+      "capabilities": ["version_control", "iterative_improvement"],
+      "memory_profile": "enterprise",
+      "status": "initialized"
+    },
+    {
+      "id": "analytics_1",
+      "name": "Analyzer",
+      "type": "analytics",
+      "company": "promptforge-ai",
+      "capabilities": ["prompt_analytics", "success_metrics"],
+      "memory_profile": "enterprise",
+      "status": "initialized"
+    },
+    {
+      "id": "analytics_2",
+      "name": "Clarity",
+      "type": "analytics",
+      "company": "promptforge-ai",
+      "capabilities": ["performance_analytics", "optimization_strategies"],
+      "memory_profile": "enterprise",
+      "status": "initialized"
+    },
+    {
+      "id": "analytics_3",
+      "name": "Tuner",
+      "type": "analytics",
+      "company": "promptforge-ai",
+      "capabilities": ["performance_optimization", "ab_testing"],
+      "memory_profile": "enterprise",
+      "status": "initialized"
+    },
+    {
+      "id": "analytics_4",
+      "name": "Quantifier",
+      "type": "analytics",
+      "company": "promptforge-ai",
+      "capabilities": ["benchmarking", "kpi_development"],
+      "memory_profile": "enterprise",
+      "status": "initialized"
+    },
+    {
+      "id": "analytics_5",
+      "name": "Archivist",
+      "type": "analytics",
+      "company": "promptforge-ai",
+      "capabilities": ["knowledge_management", "library_curation"],
+      "memory_profile": "enterprise",
+      "status": "initialized"
+    },
+    {
+      "id": "integration_1",
+      "name": "Integration",
+      "type": "integration",
+      "company": "promptforge-ai",
+      "capabilities": ["cross_agent_compatibility", "integration_testing"],
+      "memory_profile": "enterprise",
+      "status": "initialized"
+    },
+    {
+      "id": "integration_2",
+      "name": "Collaborator",
+      "type": "integration",
+      "company": "promptforge-ai",
+      "capabilities": ["cross_company_collaboration", "knowledge_sharing"],
+      "memory_profile": "enterprise",
+      "status": "initialized"
+    }
+  ]
+}

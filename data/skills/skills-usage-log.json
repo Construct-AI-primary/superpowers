@@ -1,0 +1,97 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "created": "2026-03-30T10:29:34.591Z",
+    "totalEvents": 5
+  },
+  "events": [
+    {
+      "id": "evt_1774866574593_s07grhomb",
+      "timestamp": "2026-03-30T10:29:34.593Z",
+      "skillName": "modal",
+      "userId": "test-user",
+      "context": {
+        "source": "direct",
+        "category": "unknown",
+        "tags": [],
+        "searchQuery": null,
+        "success": true,
+        "duration": null
+      }
+    },
+    {
+      "id": "evt_1774866577489_jzetz6m4f",
+      "timestamp": "2026-03-30T10:29:37.489Z",
+      "skillName": "correspondence-reply-modal",
+      "userId": "developer",
+      "context": {
+        "source": "direct",
+        "category": "unknown",
+        "tags": [],
+        "searchQuery": null,
+        "success": true,
+        "duration": null
+      }
+    },
+    {
+      "id": "evt_1774866671201_f4vitqarj",
+      "timestamp": "2026-03-30T10:31:11.201Z",
+      "skillName": "modal",
+      "userId": "test-user",
+      "context": {
+        "source": "direct",
+        "category": "unknown",
+        "tags": [],
+        "searchQuery": null,
+        "success": true,
+        "duration": null
+      }
+    },
+    {
+      "id": "evt_1774866671202_1dluuzpqb",
+      "timestamp": "2026-03-30T10:31:11.202Z",
+      "skillName": "element-styling-reference",
+      "userId": "developer",
+      "context": {
+        "source": "search",
+        "category": "UI/Frontend",
+        "tags": [],
+        "searchQuery": null,
+        "success": true,
+        "duration": 1500
+      }
+    },
+    {
+      "id": "evt_1774866671261_n3czuedmb",
+      "timestamp": "2026-03-30T10:31:11.261Z",
+      "skillName": "element-styling-reference",
+      "userId": "integration-test",
+      "context": {
+        "source": "search",
+        "category": "UI/Frontend",
+        "tags": [],
+        "searchQuery": null,
+        "success": true,
+        "duration": null
+      }
+    }
+  ],
+  "summary": {
+    "skillsAccessed": {
+      "modal": 2,
+      "correspondence-reply-modal": 1,
+      "element-styling-reference": 2
+    },
+    "users": {
+      "test-user": 2,
+      "developer": 2,
+      "integration-test": 1
+    },
+    "timeRanges": {
+      "12:00": 5
+    },
+    "categories": {
+      "UI/Frontend": 2
+    }
+  }
+}
