@@ -203,6 +203,29 @@ Skills enable:
 - **Consistent Quality:** Standardized approaches ensure quality
 - **Knowledge Transfer:** Skills capture institutional knowledge
 
+## Company-Specific Skills
+
+### Construct AI (`construct_ai/`)
+Core platform skills for the Construct AI ecosystem.
+
+### DevForge AI (`devforge_ai/`)
+Development and implementation skills for code generation and deployment workflows.
+
+### PromptForge AI (`promptforge_ai/`)
+Prompt engineering, expansion, and complex specification processing skills.
+
+### Loopy AI (`loopy_ai/`)
+Iterative and loop-based AI processing, creative content generation.
+
+### QualityForge AI (`qualityforge_ai/`)
+Quality assurance, testing, and validation workflow skills.
+
+### DomainForge AI (`domainforge_ai/`)
+Industry-specific AI solutions for healthcare, finance, legal, and manufacturing verticals.
+
+### InfraForge AI (`infraforge_ai/`)
+Infrastructure automation, DevOps practices, and cloud operations powered by AI.
+
 ## Future Enhancements
 
 Planned improvements:
@@ -212,13 +235,14 @@ Planned improvements:
 3. **Performance Analytics:** Real-time skill performance monitoring
 4. **Skill Evolution:** Automatic skill refinement based on outcomes
 5. **Cross-Project Learning:** Skills shared across different projects
+6. **Company Skill Repositories:** Dedicated skill sets for each AI team
 
 ## Repository Structure
 
 ```
 skills/
 ├── README.md                    # This overview
-├── shared/                      # Skills shared across all companies
+├── shared/                      # Skills shared across all companies (36 skills)
 │   ├── brainstorming/
 │   │   └── SKILL.md            # Creative problem-solving techniques
 │   ├── workflow-implementation/
@@ -236,8 +260,12 @@ skills/
 │       └── SKILL.md
 ├── devforge_ai/                 # DevForge AI specific skills
 ├── promptforge_ai/              # PromptForge AI specific skills
-├── loopy_ai/                    # Loopy AI specific skills
-└── qualityforge_ai/             # QualityForge AI specific skills
+├── loopy_ai/                    # Loopy AI specific skills (4 skills)
+├── qualityforge_ai/             # QualityForge AI specific skills
+├── domainforge_ai/              # DomainForge AI specific skills (NEW)
+│   └── [industry-specific skills]/
+└── infraforge_ai/               # InfraForge AI specific skills (NEW)
+    └── [infrastructure skills]/
 ```
 
 ## Development
