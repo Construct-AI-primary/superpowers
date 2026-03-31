@@ -101,6 +101,7 @@ app.get('/docs/:category/:file', async (req, res) => {
     const { category, file } = req.params;
     const docPath = path.join(__dirname, 'docs', category, file);
 
+    const fs = await import('fs');
     if (!fs.existsSync(docPath)) {
       return res.status(404).json({ error: 'Documentation not found' });
     }
