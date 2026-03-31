@@ -116,6 +116,7 @@ app.listen(PORT, () => {
   console.log(`🚀 Superpowers API server running on port ${PORT}`);
   console.log(`📚 Documentation available at http://localhost:${PORT}/docs/project/README.md`);
   console.log(`🔗 Health check at http://localhost:${PORT}/health`);
+  console.log(`📅 Deployed at: ${new Date().toISOString()}`);
 });
 
 export default app;
