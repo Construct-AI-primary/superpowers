@@ -35,13 +35,14 @@ app.get('/api/skills', async (req, res) => {
     const skillFiles = await glob('**/*.md', { cwd: skillsPath });
 
     const skills = skillFiles.map(file => {
-      const skillName = path.basename(file, '.md');
       const skillPath = path.dirname(file);
+      const skillName = path.basename(skillPath); // Use directory name as skill name
+      const category = skillPath.split('/')[0] || 'general';
       return {
         name: skillName,
         path: skillPath,
         fullPath: file,
-        category: skillPath.split('/')[0] || 'general'
+        category: category
       };
     });
 
@@ -58,7 +59,8 @@ app.get('/api/skills', async (req, res) => {
 app.get('/api/skills/:category/:skill', async (req, res) => {
   try {
     const { category, skill } = req.params;
-    const skillPath = path.join(__dirname, 'skills', category, `${skill}.md`);
+    // Skills are stored as skills/{category}/{skill}/SKILL.md
+    const skillPath = path.join(__dirname, 'skills', category, skill, 'SKILL.md');
 
     // Check if file exists
     const fs = await import('fs');
@@ -72,7 +74,7 @@ app.get('/api/skills/:category/:skill', async (req, res) => {
       name: skill,
       category: category,
       content: content,
-      path: `${category}/${skill}.md`
+      path: `${category}/${skill}/SKILL.md`
     });
   } catch (error) {
     res.status(500).json({ error: 'Failed to load skill', details: error.message });
