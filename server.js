@@ -93,18 +93,9 @@ app.get('/api/project', (req, res) => {
   });
 });
 
-// Root endpoint
+// Root endpoint - serve HTML interface
 app.get('/', (req, res) => {
-  res.json({
-    message: 'Superpowers API',
-    endpoints: {
-      'GET /health': 'Health check',
-      'GET /api/skills': 'List all skills',
-      'GET /api/skills/:category/:skill': 'Get specific skill',
-      'GET /api/project': 'Project information'
-    },
-    documentation: '/docs/project/README.md'
-  });
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Error handling middleware
